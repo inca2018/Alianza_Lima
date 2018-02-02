@@ -11,7 +11,7 @@
         android:id="@+id/card_totalizado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
         app:cardBackgroundColor="@color/grey"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
@@ -53,59 +53,58 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/container_izquierda"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <android.support.v7.widget.CardView
 
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_margin="8dp"
-         app:cardBackgroundColor="@android:color/holo_blue_light"
-         app:cardElevation="4dp"
-         app:cardCornerRadius="10dp">
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:orientation="vertical">
-             <LinearLayout
-                 android:id="@+id/panel_fisico"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:orientation="horizontal"
-                 android:layout_margin="8dp">
-                 <TextView
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="1"
-                     android:text="@string/fisico"
-                     android:textSize="18sp"
-                     android:layout_margin="8dp"
-                     android:textColor="@android:color/white"/>
-                 <TextView
-                     android:id="@+id/total_fisico"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="3"
-                     android:text="0 Ptos."
-                     android:textSize="15sp"
-                     android:layout_margin="8dp"
-                     android:textColor="@android:color/white"/>
-             </LinearLayout>
-             <LinearLayout
-                 android:id="@+id/contenedor_fisico"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:orientation="vertical"
-                 >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:cardBackgroundColor="@android:color/holo_blue_light"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/panel_fisico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/fisico"
+                        android:textSize="18sp"
+                        android:layout_margin="8dp"
+                        android:textColor="@android:color/white"/>
+                    <TextView
+                        android:id="@+id/total_fisico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="0 Ptos."
+                        android:textSize="15sp"
+                        android:layout_margin="8dp"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
 
-             </LinearLayout>
-         </LinearLayout>
+            </LinearLayout>
 
-     </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -137,21 +136,14 @@
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/contenedor_capacidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                   >
 
-                </LinearLayout>
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -183,21 +175,14 @@
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/contenedor_social"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                  >
 
-                </LinearLayout>
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -205,8 +190,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                    <LinearLayout
-                        android:id="@+id/panel_tecnico"
+                <LinearLayout
+                    android:id="@+id/panel_tecnico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -229,21 +214,14 @@
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/contenedor_tecnico"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
 
-                </LinearLayout>
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -275,17 +253,75 @@
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/container_derecha"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="10dp">
+
                 <LinearLayout
-                    android:id="@+id/contenedor_psico"
+                    android:id="@+id/contenedor_fisico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
 
                 </LinearLayout>
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/contenedor_capacidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   >
 
-        </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/contenedor_social"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/contenedor_tecnico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   >
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/contenedor_psico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   >
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
     </LinearLayout>
     </ScrollView>
 

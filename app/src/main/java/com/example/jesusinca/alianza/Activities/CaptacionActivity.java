@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jesusinca.alianza.R;
@@ -26,11 +27,13 @@ import java.util.List;
 
 public class CaptacionActivity extends AppCompatActivity {
     CardView card;
+    ScrollView scroll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_captacion);
         card=findViewById(R.id.card_totalizado);
+        scroll=findViewById(R.id.scroll_captacion);
 
 
         // Animaciones de Vistas Captacion
@@ -151,6 +154,7 @@ public class CaptacionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(captacion_vista.getAccion()==0){
+                    scroll.smoothScrollTo(0,0);
                     view_actual.setVisibility(View.VISIBLE);
 
                     captacion_vista.setAccion(1);
@@ -159,6 +163,7 @@ public class CaptacionActivity extends AppCompatActivity {
 
                     cerrar_ventanas(view_actual);
                 }else if(captacion_vista.getAccion()==1){
+                    scroll.smoothScrollTo(0,0);
                     captacion_vista.setAccion(0);
                     Animation animation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.arriba);
                     view_actual.startAnimation(animation);

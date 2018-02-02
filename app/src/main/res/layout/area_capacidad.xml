@@ -9,6 +9,12 @@
     android:id="@+id/area_capacidad"
     android:background="@android:color/holo_blue_light"
     android:visibility="gone">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@mipmap/image_capacidad"
+        android:backgroundTint="@android:color/holo_blue_dark">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -245,5 +251,5 @@
 
     </LinearLayout>
 
-
+    </LinearLayout>
 </LinearLayout>

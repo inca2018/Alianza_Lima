@@ -8,13 +8,22 @@
     android:orientation="vertical"
     android:id="@+id/area_fisico"
     android:background="@android:color/holo_blue_light"
-    android:visibility="gone">
+    android:visibility="gone"
+     >
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:background="@mipmap/image_fisico"
+       android:backgroundTint="@android:color/holo_blue_dark">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        >
 
         <TextView
             android:id="@+id/opcion_fisico1"
@@ -418,4 +427,7 @@
         </RadioGroup>
 
     </LinearLayout>
+
+   </LinearLayout>
+
 </LinearLayout>
