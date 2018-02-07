@@ -2,5 +2,6 @@
     <string name="app_name">Alianza</string>
     <string name="fisico">FISICO</string>
     <string name="_30_ptos">30 Ptos</string>
+    <string name="title_activity_registro_postulantes">RegistroPostulantesActivity</string>
 
 </resources>

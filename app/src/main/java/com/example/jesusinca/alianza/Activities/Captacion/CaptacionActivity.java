@@ -1,4 +1,4 @@
-package com.example.jesusinca.alianza.Activities;
+package com.example.jesusinca.alianza.Activities.Captacion;
 
 import android.animation.Animator;
 import android.os.Build;

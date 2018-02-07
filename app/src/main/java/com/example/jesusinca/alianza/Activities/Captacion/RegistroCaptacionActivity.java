@@ -1,4 +1,4 @@
-package com.example.jesusinca.alianza.Activities;
+package com.example.jesusinca.alianza.Activities.Captacion;
 
 import android.app.Activity;
 import android.graphics.Matrix;
