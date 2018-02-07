@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
     tools:context="com.example.jesusinca.alianza.Activities.Captacion.RegistroPostulantesActivity"
     >
 
@@ -39,47 +38,37 @@
                         android:layout_margin="4dp"
                         android:text="DATOS DE ASPIRANTE:"
                         android:textAlignment="textStart"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@android:color/white"
+                        android:background="@color/colorPrimaryDark"
                         android:layout_margin="2dp">
 
                     </LinearLayout>
 
                     <EditText
                         android:id="@+id/d_nom"
-                        style="@style/input_texto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nombres:"
                         android:inputType="text"
-                        android:textColorHint="@android:color/holo_blue_light" />
+                        android:textColorHint="@android:color/holo_blue_light"
+                        style="@style/input_texto"/>
 
-                    <android.support.design.widget.TextInputLayout
+                    <EditText
+                        android:id="@+id/d_ape"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Apellidos:"
+                        android:inputType="text"
+                        android:textColorHint="@android:color/holo_blue_light"
+                        style="@style/input_texto"
+                        />
 
-                        android:layout_margin="2dp">
 
-                        <EditText
-                            android:id="@+id/d_ape"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Apellidos:"
-                            android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
 
                         <EditText
                             android:id="@+id/d_nacionalidad"
@@ -87,17 +76,19 @@
                             android:layout_height="wrap_content"
                             android:hint="Nacionalidad:"
                             android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto"
+                            />
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:textSize="10sp"
                         android:text="Fecha de Nacimiento:"
-                        android:textColor="@android:color/holo_blue_dark" />
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -114,7 +105,7 @@
                             android:gravity="center"
                             android:text=""
                             android:textAlignment="center"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <ImageButton
@@ -127,10 +118,7 @@
                             />
                     </LinearLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
+
 
                         <EditText
                             android:id="@+id/d_residencia"
@@ -138,10 +126,10 @@
                             android:layout_height="wrap_content"
                             android:hint="Lugar de Residencia:"
                             android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto"
+                             />
+
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -165,17 +153,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:text="Datos de Contacto:"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:layout_margin="8dp"
+                        android:text="DATOS DE CONTACTO:"
+                        android:textAlignment="textStart"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"/>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
 
                         <EditText
                             android:id="@+id/d_telefono"
@@ -183,14 +167,10 @@
                             android:layout_height="wrap_content"
                             android:hint="Telefono:"
                             android:inputType="number"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
+
 
                         <EditText
                             android:id="@+id/d_email"
@@ -198,15 +178,10 @@
                             android:layout_height="wrap_content"
                             android:hint="Correo:"
                             android:inputType="textEmailAddress"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto"/>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
+
 
                         <EditText
                             android:id="@+id/d_CLub_Proc"
@@ -214,15 +189,9 @@
                             android:layout_height="wrap_content"
                             android:hint="Club de Procedencia:"
                             android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto"/>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
 
                         <EditText
                             android:id="@+id/d_apoderado"
@@ -230,15 +199,10 @@
                             android:layout_height="wrap_content"
                             android:hint="Datos de Apoderado:"
                             android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto"/>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
+
 
                         <EditText
                             android:id="@+id/d_Liga"
@@ -246,15 +210,10 @@
                             android:layout_height="wrap_content"
                             android:hint="Liga Actual:"
                             android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp">
+
 
                         <EditText
                             android:id="@+id/d_categoria"
@@ -262,15 +221,14 @@
                             android:layout_height="wrap_content"
                             android:hint="Categoria Actual:"
                             android:inputType="text"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorPrimary"
-                            android:textColorLink="@color/colorPrimaryDark" />
-                    </android.support.design.widget.TextInputLayout>
+                            android:textColorHint="@android:color/holo_blue_light"
+                            style="@style/input_texto" />
+
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
+                        android:layout_margin="8dp"
                         app:cardBackgroundColor="@android:color/holo_blue_dark"
                         app:cardCornerRadius="10sp"
                         app:cardElevation="5dp">
