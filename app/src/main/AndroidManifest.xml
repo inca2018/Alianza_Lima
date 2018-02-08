@@ -12,16 +12,19 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Activities.Captacion.CaptacionActivity"></activity>
         <activity android:name=".Activities.Captacion.RegistroCaptacionActivity">
+
+        </activity>
+        <activity
+            android:name=".Activities.Captacion.RegistroPostulantesActivity"
+            android:label="@string/title_activity_registro_postulantes"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.Captacion.RegistroPostulantesActivity"
-            android:label="@string/title_activity_registro_postulantes"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

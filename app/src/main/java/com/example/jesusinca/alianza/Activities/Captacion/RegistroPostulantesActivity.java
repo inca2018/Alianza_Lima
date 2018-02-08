@@ -37,9 +37,9 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_registro_postulantes);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_registro_postulantes);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         btn1=(ImageButton)findViewById(R.id.d_fecha_nacimiento);
         btn1.setOnClickListener(new View.OnClickListener() {

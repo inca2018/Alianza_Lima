@@ -6,31 +6,40 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
-    <style name="input_texto" >
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">@drawable/input_texto</item>
-        <item name="android:shadowColor">#C9C1C5</item>
-        <item name="android:shadowDx">0</item>
-        <item name="android:shadowDy">0</item>
-        <item name="android:shadowRadius">5</item>
-        <item name="android:textColorLink">@android:color/holo_blue_dark</item>
-        <item name="android:layout_margin">8dp</item>
+    <style name="titulo1">
+        <item name="android:textColor">@color/titulos</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">4dp</item>
         <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="titulo2">
+        <item name="android:textColor">@color/titulos</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="input_texto" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/titulos</item>
+        <item name="android:background">@drawable/input_texto</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:textColorHint">@color/colorSecondaryText</item>
-
+        <item name="android:colorFocusedHighlight">@color/red</item>
 
     </style>
+
+
+
 
 </resources>
