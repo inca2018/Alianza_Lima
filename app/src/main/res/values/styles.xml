@@ -40,6 +40,26 @@
     </style>
 
 
+    <style name="main_titulo">
+        <item name="android:textSize">@dimen/sizeLetra</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+
+    </style>
+
+    <style name="main_titulo2">
+        <item name="android:textSize">@dimen/sizeLetra2</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+
 
 
 </resources>

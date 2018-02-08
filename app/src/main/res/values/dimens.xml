@@ -1,3 +1,4 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="sizeLetra">50dp</dimen>
+    <dimen name="sizeLetra2">40dp</dimen>
 </resources>

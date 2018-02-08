@@ -8,23 +8,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Activities.Captacion.CaptacionActivity"></activity>
-        <activity android:name=".Activities.Captacion.RegistroCaptacionActivity">
-
-        </activity>
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Activities.Captacion.Inicio.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activities.Captacion.CaptacionActivity" />
+        <activity android:name=".Activities.Captacion.RegistroCaptacionActivity"></activity>
         <activity
             android:name=".Activities.Captacion.RegistroPostulantesActivity"
             android:label="@string/title_activity_registro_postulantes"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.Captacion.Inicio.LoginActivity"></activity>
     </application>
 
 </manifest>
