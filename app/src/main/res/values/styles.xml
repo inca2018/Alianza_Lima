@@ -66,6 +66,24 @@
     </style>
 
 
+    <style name="spinner_loading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/alturaSlider</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:max">100</item>
+        <item name="android:progress">0</item>
+        <item name="android:secondaryProgress">0</item>
+    </style>
+
+    <style name="textoContador">
+        <item name="android:textSize">@dimen/alturaContador</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:layout_marginLeft">@dimen/marginContador</item>
+        <item name="android:layout_marginRight">@dimen/marginContador</item>
+        <item name="android:layout_marginTop">@dimen/marginTopContador</item>
+    </style>
+
 
 
 </resources>

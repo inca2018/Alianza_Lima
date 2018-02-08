@@ -2,16 +2,14 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bienvenido"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="3"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             style="@style/main_titulo"
@@ -22,11 +20,11 @@
 
         <TextView
 
+            style="@style/main_titulo2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:text="@string/bienvenido"
-            style="@style/main_titulo2"/>
+            android:text="@string/bienvenido" />
 
     </LinearLayout>
 
@@ -35,38 +33,26 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <ProgressBar
                 android:id="@+id/loading_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/alturaSlider"
+                style="@style/spinner_loading"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:indeterminate="false"
-                android:indeterminateTint="@color/blanco"
-                android:max="100"
-                android:progress="0"
-                android:secondaryProgress="0" />
+                android:indeterminateTint="@color/blanco"/>
 
             <TextView
                 android:id="@+id/txtProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/alturaContador"
-                android:textColor="@color/blanco"
-                android:text=""
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_marginLeft="@dimen/marginContador"
-                android:layout_marginRight="@dimen/marginContador"
                 android:layout_alignTop="@+id/loading_spinner"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/marginTopContador" />
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
     </LinearLayout>
