@@ -13,6 +13,11 @@
     <dimen name="texto">20sp</dimen>
 
 
-    <dimen name="sizeLetra">80dp</dimen>
-    <dimen name="sizeLetra2">60dp</dimen>
+    <dimen name="sizeLetra">100dp</dimen>
+    <dimen name="sizeLetra2">80dp</dimen>
+
+    <dimen name="alturaSlider">200dp</dimen>
+    <dimen name="alturaContador">20dp</dimen>
+    <dimen name="marginContador">100dp</dimen>
+    <dimen name="marginTopContador">90dp</dimen>
 </resources>

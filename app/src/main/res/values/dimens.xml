@@ -1,4 +1,11 @@
 <resources>
-    <dimen name="sizeLetra">50dp</dimen>
-    <dimen name="sizeLetra2">40dp</dimen>
+    <dimen name="sizeLetra">60dp</dimen>
+    <dimen name="sizeLetra2">50dp</dimen>
+
+    <dimen name="alturaSlider">100dp</dimen>
+    <dimen name="alturaContador">10dp</dimen>
+    <dimen name="marginContador">50dp</dimen>
+    <dimen name="marginTopContador">45dp</dimen>
+
+
 </resources>

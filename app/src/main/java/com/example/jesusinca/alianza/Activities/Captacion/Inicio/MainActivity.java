@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.jesusinca.alianza.R;
 
 public class MainActivity extends AppCompatActivity {
-
     private ProgressBar p;
     private TextView txtProgress;
     private int pStatus = 0;
