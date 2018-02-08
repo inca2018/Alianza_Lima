@@ -1,15 +1,10 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
-import android.animation.Animator;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -20,10 +15,7 @@ import android.widget.TextView;
 import com.example.jesusinca.alianza.R;
 import com.example.jesusinca.alianza.Utils.Captacion_Vista;
 import com.example.jesusinca.alianza.Utils.Captacion_funcional;
-import com.example.jesusinca.alianza.Utils.Recursos;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.jesusinca.alianza.Utils.Recursos_Diagnostico;
 
 public class CaptacionActivity extends AppCompatActivity {
     CardView card;
@@ -37,36 +29,36 @@ public class CaptacionActivity extends AppCompatActivity {
 
 
         // Animaciones de Vistas Captacion
-        for(int i=0;i<Recursos.LISTA_VISTAS.size();i++){
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS.size(); i++){
 
-            LinearLayout linear=findViewById(Recursos.LISTA_VISTAS.get(i).getContenedor());
+            LinearLayout linear=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getContenedor());
             LayoutInflater inflater = LayoutInflater.from(this);
 
-            final View view_actual = inflater.inflate(Recursos.LISTA_VISTAS.get(i).getVista(), linear, true);
-            LinearLayout line=view_actual.findViewById(Recursos.LISTA_VISTAS.get(i).getArea_Accion());
+            final View view_actual = inflater.inflate(Recursos_Diagnostico.LISTA_VISTAS.get(i).getVista(), linear, true);
+            LinearLayout line=view_actual.findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getArea_Accion());
 
-            Recursos.LISTA_VISTAS.get(i).setView(line);
+            Recursos_Diagnostico.LISTA_VISTAS.get(i).setView(line);
 
-            LinearLayout Accion_Panel=findViewById(Recursos.LISTA_VISTAS.get(i).getPanel_Accion());
+            LinearLayout Accion_Panel=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getPanel_Accion());
 
-            Generar_Animacion(Recursos.LISTA_VISTAS.get(i),line,Accion_Panel);
+            Generar_Animacion(Recursos_Diagnostico.LISTA_VISTAS.get(i),line,Accion_Panel);
         }
 
         //Seleccion de Opciones group checked!
-        for(int i=0;i<Recursos.LISTA_FISICO.size();i++){
-            Generar_Funcion(i,Recursos.LISTA_FISICO.get(i));
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_FISICO.size(); i++){
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_FISICO.get(i));
         }
-        for(int i=0;i<Recursos.LISTA_CAPACIDAD.size();i++){
-            Generar_Funcion(i,Recursos.LISTA_CAPACIDAD.get(i));
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_CAPACIDAD.size(); i++){
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_CAPACIDAD.get(i));
         }
-        for(int i=0;i<Recursos.LISTA_SOCIAL.size();i++){
-            Generar_Funcion(i,Recursos.LISTA_SOCIAL.get(i));
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_SOCIAL.size(); i++){
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_SOCIAL.get(i));
         }
-        for(int i=0;i<Recursos.LISTA_PSICO.size();i++){
-            Generar_Funcion(i,Recursos.LISTA_PSICO.get(i));
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_PSICO.size(); i++){
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_PSICO.get(i));
         }
-        for(int i=0;i<Recursos.LISTA_TECNICO.size();i++){
-            Generar_Funcion(i,Recursos.LISTA_TECNICO.get(i));
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_TECNICO.size(); i++){
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_TECNICO.get(i));
         }
 
     }
@@ -108,31 +100,31 @@ public class CaptacionActivity extends AppCompatActivity {
 
         int total_general=0;
 
-        for(int i=0;i<Recursos.LISTA_FISICO.size();i++){
-            total1=total1+Recursos.LISTA_FISICO.get(i).getResultado();
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_FISICO.size(); i++){
+            total1=total1+ Recursos_Diagnostico.LISTA_FISICO.get(i).getResultado();
         }
-        TextView fisico_total=findViewById(Recursos.LISTA_VISTAS.get(0).getTextViewTotal());
+        TextView fisico_total=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(0).getTextViewTotal());
         fisico_total.setText(total1+" Ptos.");
-        for(int i=0;i<Recursos.LISTA_CAPACIDAD.size();i++){
-            total2=total2+Recursos.LISTA_CAPACIDAD.get(i).getResultado();
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_CAPACIDAD.size(); i++){
+            total2=total2+ Recursos_Diagnostico.LISTA_CAPACIDAD.get(i).getResultado();
         }
 
-        TextView capacidad_total=findViewById(Recursos.LISTA_VISTAS.get(1).getTextViewTotal());
+        TextView capacidad_total=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(1).getTextViewTotal());
         capacidad_total.setText(total2+" Ptos.");
-        for(int i=0;i<Recursos.LISTA_SOCIAL.size();i++){
-            total3=total3+Recursos.LISTA_SOCIAL.get(i).getResultado();
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_SOCIAL.size(); i++){
+            total3=total3+ Recursos_Diagnostico.LISTA_SOCIAL.get(i).getResultado();
         }
-        TextView social_total=findViewById(Recursos.LISTA_VISTAS.get(2).getTextViewTotal());
+        TextView social_total=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(2).getTextViewTotal());
         social_total.setText(total3+" Ptos.");
-        for(int i=0;i<Recursos.LISTA_TECNICO.size();i++){
-            total4=total4+Recursos.LISTA_TECNICO.get(i).getResultado();
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_TECNICO.size(); i++){
+            total4=total4+ Recursos_Diagnostico.LISTA_TECNICO.get(i).getResultado();
         }
-        TextView tecnico_total=findViewById(Recursos.LISTA_VISTAS.get(3).getTextViewTotal());
+        TextView tecnico_total=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(3).getTextViewTotal());
         tecnico_total.setText(total4+" Ptos.");
-        for(int i=0;i<Recursos.LISTA_PSICO.size();i++){
-            total5=total5+Recursos.LISTA_PSICO.get(i).getResultado();
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_PSICO.size(); i++){
+            total5=total5+ Recursos_Diagnostico.LISTA_PSICO.get(i).getResultado();
         }
-        TextView psico_total=findViewById(Recursos.LISTA_VISTAS.get(4).getTextViewTotal());
+        TextView psico_total=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(4).getTextViewTotal());
         psico_total.setText(total5+" Ptos.");
 
         TextView total_g=findViewById(R.id.total_captacion);
@@ -175,11 +167,11 @@ public class CaptacionActivity extends AppCompatActivity {
     }
 
     private void cerrar_ventanas(LinearLayout view_actual) {
-        for(int i=0;i<Recursos.LISTA_VISTAS.size();i++){
-            if(Recursos.LISTA_VISTAS.get(i).getView()==view_actual){
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS.size(); i++){
+            if(Recursos_Diagnostico.LISTA_VISTAS.get(i).getView()==view_actual){
 
             }else{
-               Recursos.LISTA_VISTAS.get(i).getView().setVisibility(View.GONE);
+               Recursos_Diagnostico.LISTA_VISTAS.get(i).getView().setVisibility(View.GONE);
             }
         }
     }

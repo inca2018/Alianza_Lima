@@ -1,5 +1,6 @@
 package com.example.jesusinca.alianza.Utils;
 
+import com.example.jesusinca.alianza.Activities.Captacion.RegistroPostulantesActivity;
 import com.example.jesusinca.alianza.R;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by Jesus Inca on 24/01/2018.
  */
 
-public class Recursos {
+public class Recursos_Diagnostico {
 
     public static final List<Captacion_Vista> LISTA_VISTAS= new ArrayList<>();
     public  static final List<Captacion_funcional> LISTA_FISICO =new ArrayList<>();
@@ -17,6 +18,10 @@ public class Recursos {
     public static final List<Captacion_funcional> LISTA_SOCIAL =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_TECNICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PSICO =new ArrayList<>();
+
+
+
+
     static{
 
         LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_fisico,R.id.contenedor_fisico,R.id.panel_fisico,R.id.area_fisico,0,R.id.total_fisico));
@@ -193,5 +198,9 @@ public class Recursos {
                 R.id.p42,
                 R.id.p43,
                 R.id.p44,0));
+
+
+
     }
+
 }

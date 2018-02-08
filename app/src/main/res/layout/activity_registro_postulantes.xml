@@ -54,10 +54,11 @@
                         />
 
                     <EditText
-                        android:id="@+id/d_nom"
+                        android:id="@+id/capta_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:maxLength="40"
                         style="@style/input_texto"/>
 
                     <TextView
@@ -68,10 +69,11 @@
                         />
 
                     <EditText
-                        android:id="@+id/d_ape"
+                        android:id="@+id/capta_apellido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:maxLength="40"
                         style="@style/input_texto"
                         />
                     <TextView
@@ -81,10 +83,11 @@
                         style="@style/titulo2"
                         />
                         <EditText
-                            android:id="@+id/d_nacionalidad"
+                            android:id="@+id/capta_nacionalidad"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
+                            android:maxLength="40"
                             style="@style/input_texto"
                             />
 
@@ -95,10 +98,11 @@
                         style="@style/titulo2"
                         />
                     <EditText
-                        android:id="@+id/d_CLub_Proc"
+                        android:id="@+id/capta_procedencia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:maxLength="40"
                         style="@style/input_texto"/>
 
                     <TextView
@@ -109,10 +113,11 @@
                         />
 
                     <EditText
-                        android:id="@+id/d_Liga"
+                        android:id="@+id/capta_liga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:maxLength="40"
                         style="@style/input_texto" />
 
                     <TextView
@@ -122,10 +127,11 @@
                         style="@style/titulo2"
                         />
                     <EditText
-                        android:id="@+id/d_categoria"
+                        android:id="@+id/capta_categoria"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:maxLength="40"
                         style="@style/input_texto" />
 
 
@@ -136,10 +142,11 @@
                         style="@style/titulo2"
                         />
                     <EditText
-                        android:id="@+id/d_dni"
+                        android:id="@+id/capta_dni"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:inputType="number"
+                        android:maxLength="8"
                         style="@style/input_texto" />
 
                     <TextView
@@ -155,23 +162,21 @@
                         android:orientation="horizontal">
                         <ImageButton
                             android:id="@+id/d_fecha_nacimiento"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:src="@mipmap/icon_calendar2"
                             />
-                        <TextView
-                            android:id="@+id/d_fecha_nac"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                        <EditText
+                            android:id="@+id/capta_fecha_nacimiento"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="12"
-                            android:gravity="center"
-                            android:text=""
+                            style="@style/input_texto"
                             android:textAlignment="center"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:enabled="false"/>
 
                     </LinearLayout>
 
@@ -221,11 +226,12 @@
                         />
 
                     <EditText
-                        android:id="@+id/d_residencia"
+                        android:id="@+id/capta_residencia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         style="@style/input_texto"
+                        android:maxLength="40"
                         />
 
                     <TextView
@@ -235,11 +241,12 @@
                         style="@style/titulo2"
                         />
                         <EditText
-                            android:id="@+id/d_telefono"
+                            android:id="@+id/capta_telefono1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            style="@style/input_texto" />
+                            style="@style/input_texto"
+                            android:maxLength="9"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -248,11 +255,12 @@
                         style="@style/titulo2"
                         />
                         <EditText
-                            android:id="@+id/d_email"
+                            android:id="@+id/capta_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress"
-                            style="@style/input_texto"/>
+                            style="@style/input_texto"
+                            android:maxLength="40"/>
 
 
                     <TextView
@@ -262,11 +270,12 @@
                         style="@style/titulo2"
                         />
                         <EditText
-                            android:id="@+id/d_apoderado"
+                            android:id="@+id/capta_apoderado"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            style="@style/input_texto"/>
+                            style="@style/input_texto"
+                            android:maxLength="40"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -275,11 +284,12 @@
                         style="@style/titulo2"
                         />
                     <EditText
-                        android:id="@+id/d_telefono2"
+                        android:id="@+id/capta_telefono2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        style="@style/input_texto" />
+                        style="@style/input_texto"
+                        android:maxLength="9"/>
 
 
 
