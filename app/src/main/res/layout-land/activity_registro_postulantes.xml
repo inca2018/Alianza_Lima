@@ -165,7 +165,7 @@
                             android:id="@+id/d_fecha_nacimiento"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="6"
                             android:background="@android:color/transparent"
                             android:src="@mipmap/icon_calendar2"
                             />
@@ -174,7 +174,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="12"
+                            android:layout_weight="1"
                             style="@style/input_texto"
                             android:textAlignment="center"
                             android:enabled="false"/>

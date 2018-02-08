@@ -21,6 +21,7 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_postulantes);
+        Reiniciar_Array();
         f_naci=findViewById(R.id.capta_fecha_nacimiento);
         btn1=findViewById(R.id.d_fecha_nacimiento);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -41,8 +42,23 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
         new DatePickerDialog(this, d1,1999,0,1).show();
     }
     private void updateTextLabel1(){
+        String meso="";
+        String diao="";
         int mes =dateTime.get(Calendar.MONTH)+1;
-        String fecha_nacimiento=dateTime.get(Calendar.DAY_OF_MONTH)+"/"+mes+"/"+dateTime.get(Calendar.YEAR);
+        int dia=dateTime.get(Calendar.DAY_OF_MONTH);
+        int anoo=dateTime.get(Calendar.YEAR);
+        if(mes<10){
+            meso="0"+mes;
+        }else{
+            meso=""+mes;
+        }
+        if(dia<10){
+            diao="0"+dia;
+        }else{
+            diao=""+dia;
+        }
+
+        String fecha_nacimiento=diao+"/"+meso+"/"+anoo;
         f_naci.setText(fecha_nacimiento);
 
 
@@ -80,7 +96,7 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
        Boolean t=true;
 
         for(int i=0;i<Recursos_Registro_Postulante.LISTA_REGISTRO.size();i++){
-            String texto_temp=Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).getCampoEditText().getText().toString();
+            String texto_temp=Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).getCampoEditText().getText().toString().trim();
             Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setValor(texto_temp);
             if(texto_temp.length()!=0){
                 Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setEstado(true);
@@ -106,4 +122,11 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
             updateTextLabel1();
         }
     };
+    private void Reiniciar_Array(){
+        for(int i=0;i<Recursos_Registro_Postulante.LISTA_REGISTRO.size();i++){
+           Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setCampoEditText(null);
+           Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setValor("");
+           Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setEstado(false);
+        }
+    }
 }
