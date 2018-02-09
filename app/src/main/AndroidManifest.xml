@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activities.Captacion.Inicio.MainActivity">
+        <activity android:name=".Activities.Inicio.MainActivity">
 
         </activity>
         <activity android:name=".Activities.Captacion.CaptacionActivity" />
@@ -19,7 +19,7 @@
         <activity
             android:name=".Activities.Captacion.RegistroPostulantesActivity">
         </activity>
-        <activity android:name=".Activities.Captacion.Inicio.LoginActivity">
+        <activity android:name=".Activities.Inicio.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

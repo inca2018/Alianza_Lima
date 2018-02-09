@@ -1,4 +1,4 @@
-package com.example.jesusinca.alianza.Activities.Captacion.Inicio;
+package com.example.jesusinca.alianza.Activities.Inicio;
 
 import android.content.Intent;
 import android.os.Handler;

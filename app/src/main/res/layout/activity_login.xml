@@ -121,7 +121,7 @@
                                     android:tint="@color/colorPrimary" />
 
                                 <EditText
-                                    android:id="@+id/etusu"
+                                    android:id="@+id/login_usuario"
                                     style="@style/input_texto"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                                     android:tint="@color/colorPrimary" />
 
                                 <EditText
-                                    android:id="@+id/etpas"
+                                    android:id="@+id/login_pass"
                                     style="@style/input_texto"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
