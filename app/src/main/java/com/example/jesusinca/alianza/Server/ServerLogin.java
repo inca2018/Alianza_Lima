@@ -1,5 +1,6 @@
 package com.example.jesusinca.alianza.Server;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
@@ -24,8 +25,8 @@ public class ServerLogin implements ServicioLogin {
     String codigo="";
 
     @Override
-    public String Validar_Sesion(String usuario, String pass, Context context) {
-
+    public String Validar_Sesion(String usuario, String pass,final ProgressDialog progress, Context context) {
+        System.out.println("Ingreso validar sesion INCA");
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -38,6 +39,8 @@ public class ServerLogin implements ServicioLogin {
                          respuesta=jsonResponse.getString("mensaje");
                         // int idusuario = jsonResponse.getInt("codigo");
                         //String nombre = jsonResponse.getString("nombre");
+
+                        progress.dismiss();
                     } else {
 
                          respuesta=jsonResponse.getString("mensaje");

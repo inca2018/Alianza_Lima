@@ -5,5 +5,5 @@ package com.example.jesusinca.alianza.Utils;
  */
 
 public class Conexion {
-    public static final String VALIDAR_SESION="http://alianza2.esy.es/php2/LoginAL.php";
+    public static final String VALIDAR_SESION="http://futuroblanquiazul.org/alianza/Login/servicio_login.php";
 }

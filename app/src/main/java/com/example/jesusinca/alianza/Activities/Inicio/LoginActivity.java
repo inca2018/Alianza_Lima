@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     //Variable de servicio
     ServicioLogin Servicio_login;
+    Button ingresar;
 
     Context context;
 
@@ -29,24 +31,42 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+            context=getApplicationContext();
             usuario_login=findViewById(R.id.login_usuario);
             pass_login=findViewById(R.id.login_pass);
-            context=getApplicationContext();
+            ingresar=findViewById(R.id.ingresar_login);
+
+            ingresar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Ingresar_Sesion();
+
+                }
+            });
     }
 
-    public void ingresar(View view){
-
+    public void Ingresar_Sesion(){
+         System.out.println("Ingreso click INCA");
         //Recuperar variables de sesion
          String usuario=usuario_login.getText().toString().trim();
          String pass=pass_login.getText().toString().trim();
-        //Recuperar mensaje de validacion , Vacio= Ingreso , LLeno = Mensaje de error (usuario no existe, password incorrecto)
-         String mensaje=Servicio_login.Validar_Sesion(usuario,pass,context);
+
 
          //Inicio de progress de carga
          progressDialog = new ProgressDialog(this);
          progressDialog.setTitle("Login");
          progressDialog.setMessage("Verificando Usuario...");
          progressDialog.show();
+
+        //Recuperar mensaje de validacion , Vacio= Ingreso , LLeno = Mensaje de error (usuario no existe, password incorrecto)
+         String mensaje=Servicio_login.Validar_Sesion(usuario,pass,progressDialog,context);
+
+         if(mensaje==null){
+             System.out.println("Ingreso mensaje null INCA");
+         }else{
+             System.out.println("Ingreso mensaje con datos INCA "+mensaje);
+         }
 
          //Condicion si existe mensaje de error , si no procede con la sesion
           if(mensaje.length()==0){

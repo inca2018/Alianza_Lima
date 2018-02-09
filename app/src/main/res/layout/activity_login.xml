@@ -199,13 +199,12 @@
                 app:cardCornerRadius="10dp">
 
                 <Button
-                    android:id="@+id/btingre"
+                    android:id="@+id/ingresar_login"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:elevation="10dp"
                     android:gravity="center"
-                    android:onClick="ingresar"
                     android:text="@string/ingresar"
                     android:textColor="@color/blanco"
                     android:textSize="18sp"
