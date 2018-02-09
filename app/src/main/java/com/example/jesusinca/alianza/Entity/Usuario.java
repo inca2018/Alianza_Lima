@@ -12,6 +12,7 @@ import java.util.List;
 public class Usuario {
   int id;
   String usuario;
+  String password;
   String Nombres;
   String Apellidos;
   int dni;
@@ -19,6 +20,11 @@ public class Usuario {
   int estado;
   String area;
   String Cargo;
+  String foto;
+  String correo;
+
+  String fecha_creacion;
+  String fecha_conexion;
 
 
     public static final Usuario SESION_ACTUAL=new Usuario();
@@ -101,5 +107,45 @@ public class Usuario {
 
     public static Usuario getSesionActual() {
         return SESION_ACTUAL;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(String fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+    }
+
+    public String getFecha_conexion() {
+        return fecha_conexion;
+    }
+
+    public void setFecha_conexion(String fecha_conexion) {
+        this.fecha_conexion = fecha_conexion;
     }
 }
