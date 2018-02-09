@@ -8,16 +8,27 @@
     <dimen name="altura">550dp</dimen>
     <dimen name="altura_card">56dp</dimen>
     <dimen name="ancho_card">56dp</dimen>
-    <dimen name="iconos_altura">60dp</dimen>
-    <dimen name="iconos_ancho">60dp</dimen>
+    <dimen name="iconos_altura">40dp</dimen>
+    <dimen name="iconos_ancho">40dp</dimen>
     <dimen name="texto">20sp</dimen>
 
 
-    <dimen name="sizeLetra">100dp</dimen>
-    <dimen name="sizeLetra2">80dp</dimen>
+    <dimen name="sizeLetra">80dp</dimen>
+    <dimen name="sizeLetra2">60dp</dimen>
 
-    <dimen name="alturaSlider">200dp</dimen>
+    <dimen name="alturaSlider">220dp</dimen>
     <dimen name="alturaContador">20dp</dimen>
-    <dimen name="marginContador">100dp</dimen>
-    <dimen name="marginTopContador">90dp</dimen>
+    <dimen name="marginContador">120dp</dimen>
+    <dimen name="marginTopContador">80dp</dimen>
+
+
+    <dimen name="margin_lados">64dp</dimen>
+
+
+    <integer name="bloqueA_login">4</integer>
+    <integer name="bloqueB_login">3</integer>
+    <integer name="bloqueC_login">6</integer>
+
+    <dimen name="ancho_login">400dp</dimen>
+
 </resources>

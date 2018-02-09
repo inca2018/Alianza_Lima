@@ -67,7 +67,7 @@
 
 
     <style name="spinner_loading">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">@dimen/alturaSlider</item>
         <item name="android:layout_height">@dimen/alturaSlider</item>
         <item name="android:indeterminate">false</item>
         <item name="android:max">100</item>

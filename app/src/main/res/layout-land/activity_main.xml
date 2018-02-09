@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:text="@string/bienvenido" />
 
     </LinearLayout>
@@ -40,22 +40,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
-
-            <ProgressBar
-                android:id="@+id/loading_spinner"
-                style="@style/spinner_loading"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:indeterminateTint="@color/blanco"/>
-
-            <TextView
-                android:id="@+id/txtProgress"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/loading_spinner"
-                android:layout_centerHorizontal="true"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                style="@style/textoContador"/>
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
+                <ProgressBar
+                    android:id="@+id/loading_spinner"
+                    style="@style/spinner_loading"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:indeterminateTint="@color/blanco"/>
+
+                <TextView
+                    android:id="@+id/txtProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/loading_spinner"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    style="@style/textoContador"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
     </LinearLayout>

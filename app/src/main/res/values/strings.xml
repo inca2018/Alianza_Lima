@@ -47,4 +47,7 @@
     <string name="seguimiento">SEGUIMIENTO:</string>
     <string name="guardar">GUARDAR</string>
 
+
+    <string name="recuperar_pass"><u>¿Olvido Contraseña?</u></string>
+
 </resources>

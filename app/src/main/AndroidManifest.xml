@@ -12,18 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Activities.Captacion.Inicio.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.Captacion.CaptacionActivity" />
         <activity android:name=".Activities.Captacion.RegistroCaptacionActivity"></activity>
         <activity
             android:name=".Activities.Captacion.RegistroPostulantesActivity">
         </activity>
-        <activity android:name=".Activities.Captacion.Inicio.LoginActivity"></activity>
+        <activity android:name=".Activities.Captacion.Inicio.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
