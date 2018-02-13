@@ -11,7 +11,7 @@
         android:id="@+id/card_totalizado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
         app:cardBackgroundColor="@color/grey"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
@@ -50,16 +50,141 @@
         android:id="@+id/scroll_captacion"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Posiciones Sugeridas:"
+                    style="@style/titulo1"/>
+
+            <Spinner
+                android:id="@+id/sugerido1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
+            </Spinner>
+            <Spinner
+                android:id="@+id/sugerido2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
+            </Spinner>
+            <Spinner
+                android:id="@+id/sugerido3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                >
+            </Spinner>
+           </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lateralidad:"
+                    style="@style/titulo1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DERECHA"
+                        style="@style/titulo2"/>
+                    <RadioButton
+                        android:id="@+id/latera1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="IZQUIERDA"
+                        style="@style/titulo2"/>
+                    <RadioButton
+                        android:id="@+id/latera2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AMBAS"
+                        style="@style/titulo2"/>
+                    <RadioButton
+                        android:id="@+id/latera3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 
         <android.support.v7.widget.CardView
 
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         android:layout_margin="8dp"
+         android:layout_margin="4dp"
          app:cardBackgroundColor="@android:color/holo_blue_light"
          app:cardElevation="4dp"
          app:cardCornerRadius="10dp">
@@ -105,7 +230,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -151,7 +276,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -197,7 +322,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
@@ -243,7 +368,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">

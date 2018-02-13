@@ -20,8 +20,8 @@ public class ValidarSesion extends StringRequest {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","validar");
-        params.put("usuario_login", usuario);
-        params.put("pass_login", password);
+        params.put("usuario_login",usuario);
+        params.put("pass_login",password);
 
     }
 

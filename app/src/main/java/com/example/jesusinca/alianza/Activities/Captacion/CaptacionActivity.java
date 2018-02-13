@@ -27,7 +27,6 @@ public class CaptacionActivity extends AppCompatActivity {
         card=findViewById(R.id.card_totalizado);
         scroll=findViewById(R.id.scroll_captacion);
 
-
         // Animaciones de Vistas Captacion
         for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS.size(); i++){
 
@@ -36,14 +35,10 @@ public class CaptacionActivity extends AppCompatActivity {
 
             final View view_actual = inflater.inflate(Recursos_Diagnostico.LISTA_VISTAS.get(i).getVista(), linear, true);
             LinearLayout line=view_actual.findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getArea_Accion());
-
             Recursos_Diagnostico.LISTA_VISTAS.get(i).setView(line);
-
             LinearLayout Accion_Panel=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getPanel_Accion());
-
             Generar_Animacion(Recursos_Diagnostico.LISTA_VISTAS.get(i),line,Accion_Panel);
         }
-
         //Seleccion de Opciones group checked!
         for(int i = 0; i< Recursos_Diagnostico.LISTA_FISICO.size(); i++){
             Generar_Funcion(i, Recursos_Diagnostico.LISTA_FISICO.get(i));
@@ -60,9 +55,7 @@ public class CaptacionActivity extends AppCompatActivity {
         for(int i = 0; i< Recursos_Diagnostico.LISTA_TECNICO.size(); i++){
             Generar_Funcion(i, Recursos_Diagnostico.LISTA_TECNICO.get(i));
         }
-
     }
-
     private void Generar_Funcion(int v, final Captacion_funcional captacion_funcional) {
         int n=v+1;
         TextView textView=findViewById(captacion_funcional.getTextView());
@@ -90,7 +83,6 @@ public class CaptacionActivity extends AppCompatActivity {
         });
 
     }
-
     private void Refrescar_Totales() {
         int total1=0;
         int total2=0;
@@ -139,7 +131,6 @@ public class CaptacionActivity extends AppCompatActivity {
             card.setCardBackgroundColor(getResources().getColor(R.color.grey));
         }
     }
-
     private void Generar_Animacion(final Captacion_Vista captacion_vista,final LinearLayout view_actual,LinearLayout Accion_Panel ) {
 
         Accion_Panel.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +156,6 @@ public class CaptacionActivity extends AppCompatActivity {
             }
         });
     }
-
     private void cerrar_ventanas(LinearLayout view_actual) {
         for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS.size(); i++){
             if(Recursos_Diagnostico.LISTA_VISTAS.get(i).getView()==view_actual){
@@ -175,6 +165,5 @@ public class CaptacionActivity extends AppCompatActivity {
             }
         }
     }
-
 
 }
