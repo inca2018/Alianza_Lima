@@ -1,5 +1,9 @@
 package com.example.jesusinca.alianza.ActivityEntity;
 
+import com.example.jesusinca.alianza.Utils.Captacion_Vista;
+
+import java.util.List;
+
 /**
  * Created by Jesus Inca on 13/02/2018.
  */
@@ -21,9 +25,57 @@ public class modulo_captacion {
     int sugerido_3;
     String lateralidad;
     int estado;
+    List<Integer> Resultados_Fisico;
+    List<Integer> Resultados_capacidad;
+    List<Integer> Resultados_social;
+    List<Integer> Resultados_tecnico;
+    List<Integer> Resultados_psico;
+
 
     public modulo_captacion(){
 
+    }
+
+
+
+    public List<Integer> getResultados_Fisico() {
+        return Resultados_Fisico;
+    }
+
+    public void setResultados_Fisico(List<Integer> resultados_Fisico) {
+        Resultados_Fisico = resultados_Fisico;
+    }
+
+    public List<Integer> getResultados_capacidad() {
+        return Resultados_capacidad;
+    }
+
+    public void setResultados_capacidad(List<Integer> resultados_capacidad) {
+        Resultados_capacidad = resultados_capacidad;
+    }
+
+    public List<Integer> getResultados_social() {
+        return Resultados_social;
+    }
+
+    public void setResultados_social(List<Integer> resultados_social) {
+        Resultados_social = resultados_social;
+    }
+
+    public List<Integer> getResultados_tecnico() {
+        return Resultados_tecnico;
+    }
+
+    public void setResultados_tecnico(List<Integer> resultados_tecnico) {
+        Resultados_tecnico = resultados_tecnico;
+    }
+
+    public List<Integer> getResultados_psico() {
+        return Resultados_psico;
+    }
+
+    public void setResultados_psico(List<Integer> resultados_psico) {
+        Resultados_psico = resultados_psico;
     }
 
     public int getId_persona() {

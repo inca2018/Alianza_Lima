@@ -1,5 +1,6 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -10,36 +11,46 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.jesusinca.alianza.Activities.Inicio.LoginActivity;
+import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.R;
 import com.example.jesusinca.alianza.Utils.Captacion_Vista;
 import com.example.jesusinca.alianza.Utils.Captacion_funcional;
 import com.example.jesusinca.alianza.Utils.Recursos_Diagnostico;
 
 public class CaptacionActivity extends AppCompatActivity {
-    CardView card;
+    CardView card,card_aprobacion;
     ScrollView scroll;
+    Spinner sugerido1,sugerido2,sugerido3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_captacion);
         card=findViewById(R.id.card_totalizado);
+        card_aprobacion=findViewById(R.id.card_aprobacion);
         scroll=findViewById(R.id.scroll_captacion);
 
+
         // Animaciones de Vistas Captacion
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS.size(); i++){
+         Creacion_Animaciones();
 
-            LinearLayout linear=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getContenedor());
-            LayoutInflater inflater = LayoutInflater.from(this);
-
-            final View view_actual = inflater.inflate(Recursos_Diagnostico.LISTA_VISTAS.get(i).getVista(), linear, true);
-            LinearLayout line=view_actual.findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getArea_Accion());
-            Recursos_Diagnostico.LISTA_VISTAS.get(i).setView(line);
-            LinearLayout Accion_Panel=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getPanel_Accion());
-            Generar_Animacion(Recursos_Diagnostico.LISTA_VISTAS.get(i),line,Accion_Panel);
-        }
         //Seleccion de Opciones group checked!
+        Seteo_RadioGroups();
+
+        card_aprobacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
+                CaptacionActivity.this.startActivity(intent);
+            }
+        });
+    }
+
+    private void Seteo_RadioGroups() {
+
         for(int i = 0; i< Recursos_Diagnostico.LISTA_FISICO.size(); i++){
             Generar_Funcion(i, Recursos_Diagnostico.LISTA_FISICO.get(i));
         }
@@ -54,6 +65,21 @@ public class CaptacionActivity extends AppCompatActivity {
         }
         for(int i = 0; i< Recursos_Diagnostico.LISTA_TECNICO.size(); i++){
             Generar_Funcion(i, Recursos_Diagnostico.LISTA_TECNICO.get(i));
+        }
+
+    }
+    private void Creacion_Animaciones() {
+
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS.size(); i++){
+
+            LinearLayout linear=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getContenedor());
+            LayoutInflater inflater = LayoutInflater.from(this);
+
+            final View view_actual = inflater.inflate(Recursos_Diagnostico.LISTA_VISTAS.get(i).getVista(), linear, true);
+            LinearLayout line=view_actual.findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getArea_Accion());
+            Recursos_Diagnostico.LISTA_VISTAS.get(i).setView(line);
+            LinearLayout Accion_Panel=findViewById(Recursos_Diagnostico.LISTA_VISTAS.get(i).getPanel_Accion());
+            Generar_Animacion(Recursos_Diagnostico.LISTA_VISTAS.get(i),line,Accion_Panel);
         }
     }
     private void Generar_Funcion(int v, final Captacion_funcional captacion_funcional) {
@@ -125,10 +151,13 @@ public class CaptacionActivity extends AppCompatActivity {
 
         if(total_general>=45 && total_general<=49){
             card.setCardBackgroundColor(getResources().getColor(R.color.Orange));
+            card_aprobacion.setVisibility(View.GONE);
         }else if(total_general>=50){
             card.setCardBackgroundColor(getResources().getColor(R.color.green));
+            card_aprobacion.setVisibility(View.VISIBLE);
         }else if(total_general<=44){
             card.setCardBackgroundColor(getResources().getColor(R.color.grey));
+            card_aprobacion.setVisibility(View.GONE);
         }
     }
     private void Generar_Animacion(final Captacion_Vista captacion_vista,final LinearLayout view_actual,LinearLayout Accion_Panel ) {

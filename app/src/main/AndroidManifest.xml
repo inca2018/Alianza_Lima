@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activities.Inicio.MainActivity"></activity>
+        <activity android:name=".Activities.Inicio.MainActivity" />
         <activity android:name=".Activities.Captacion.CaptacionActivity" />
-        <activity android:name=".Activities.Captacion.RegistroCaptacionActivity" />
-        <activity android:name=".Activities.Captacion.RegistroPostulantesActivity"></activity>
+        <activity android:name=".Activities.Captacion.PruebaAnimacionActivity" />
+        <activity android:name=".Activities.Captacion.RegistroPostulantesActivity" />
         <activity android:name=".Activities.Inicio.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.Inicio.PrincipalActivity"></activity>
+        <activity android:name=".Activities.Inicio.PrincipalActivity" />
+        <activity android:name=".Activities.Ubigeo.UbigeoActivity"></activity>
     </application>
 
 </manifest>

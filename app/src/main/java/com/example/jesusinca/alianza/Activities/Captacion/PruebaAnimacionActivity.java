@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.example.jesusinca.alianza.R;
 
-public class RegistroCaptacionActivity extends Activity implements View.OnTouchListener {
+public class PruebaAnimacionActivity extends Activity implements View.OnTouchListener {
 
     ImageView image;
 

@@ -19,9 +19,6 @@ public class Recursos_Diagnostico {
     public static final List<Captacion_funcional> LISTA_TECNICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PSICO =new ArrayList<>();
 
-
-
-
     static{
 
         LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_fisico,R.id.contenedor_fisico,R.id.panel_fisico,R.id.area_fisico,0,R.id.total_fisico));
