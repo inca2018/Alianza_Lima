@@ -24,23 +24,64 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:text="CAPTACIÓN"
                 android:textColor="@android:color/white"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/total_captacion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="3"
                 android:text=" 0 Ptos."
                 android:textColor="@android:color/white"
                 android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_aprobacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="@color/verde_bajo"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="REGISTRAR DE POSTULANTE"
+                android:textColor="@android:color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/aprobacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@mipmap/icon_next"
+                android:tint="@color/colorWhite"
+
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -69,7 +110,7 @@
 
             <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="match_parent"
                android:orientation="vertical"
                android:layout_weight="1">
                 <TextView
@@ -77,31 +118,39 @@
                     android:layout_height="wrap_content"
                     android:text="Posiciones Sugeridas:"
                     style="@style/titulo1"/>
-
-            <Spinner
-                android:id="@+id/sugerido1"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <Spinner
+                    android:id="@+id/sugerido1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
 
-                >
-            </Spinner>
-            <Spinner
-                android:id="@+id/sugerido2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                    >
+                </Spinner>
+                <Spinner
+                    android:id="@+id/sugerido2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
 
-                >
-            </Spinner>
-            <Spinner
-                android:id="@+id/sugerido3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                    >
+                </Spinner>
+                <Spinner
+                    android:id="@+id/sugerido3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
 
-                >
-            </Spinner>
+                    >
+                </Spinner>
+            </LinearLayout>
+
            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,62 +164,80 @@
                     android:text="Lateralidad:"
                     style="@style/titulo1"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="DERECHA"
-                        style="@style/titulo2"/>
-                    <RadioButton
-                        android:id="@+id/latera1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"/>
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="horizontal">
 
-                </LinearLayout>
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="IZQUIERDA"
-                        style="@style/titulo2"/>
-                    <RadioButton
-                        android:id="@+id/latera2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"/>
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:text="DERECHA"
+                             style="@style/titulo2"
+                             android:layout_weight="1"
+                             android:textAlignment="center"/>
 
-                </LinearLayout>
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:text="IZQUIERDA"
+                             style="@style/titulo2"
+                             android:layout_weight="1"
+                             android:textAlignment="center"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="AMBAS"
-                        style="@style/titulo2"/>
-                    <RadioButton
-                        android:id="@+id/latera3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"/>
+                         <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:text="AMBOS"
+                             style="@style/titulo2"
+                             android:layout_weight="1"
+                             android:textAlignment="center"/>
 
-                </LinearLayout>
+
+
+                     </LinearLayout>
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:layout_weight="1">
+
+                         <RadioGroup
+                             android:id="@+id/opciones_lateralidad"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent">
+
+                             <RadioButton
+                                 android:id="@+id/lateral_derecho"
+                             android:layout_width="wrap_content"
+                             android:layout_height="match_parent"
+                             android:layout_weight="1"
+                                 android:layout_gravity="center"/>
+                             <RadioButton
+                                 android:id="@+id/lateral_izquierdo"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="match_parent"
+                                 android:layout_weight="1"
+                                 android:layout_gravity="center"/>
+                             <RadioButton
+                                 android:id="@+id/lateral_ambos"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="match_parent"
+                                 android:layout_weight="1"
+                                 android:layout_gravity="center"/>
+
+                         </RadioGroup>
+                     </LinearLayout>
+
+
+                 </LinearLayout>
 
             </LinearLayout>
 
@@ -209,12 +276,13 @@
                  <TextView
                      android:id="@+id/total_fisico"
                      android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
+                     android:layout_height="match_parent"
                      android:layout_weight="3"
                      android:text="0 Ptos."
                      android:textSize="15sp"
                      android:layout_margin="8dp"
-                     android:textColor="@android:color/white"/>
+                     android:textColor="@android:color/white"
+                     android:textAlignment="center"/>
              </LinearLayout>
              <LinearLayout
                  android:id="@+id/contenedor_fisico"
@@ -255,12 +323,13 @@
                     <TextView
                         android:id="@+id/total_capacidad"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:text="0 Ptos."
                         android:textSize="15sp"
                         android:layout_margin="8dp"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:textAlignment="center"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/contenedor_capacidad"
@@ -280,40 +349,45 @@
             app:cardBackgroundColor="@android:color/holo_blue_light"
             app:cardElevation="4dp"
             app:cardCornerRadius="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:id="@+id/panel_social"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="8dp">
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
                         android:layout_weight="1"
                         android:text="SOCIAL"
-                        android:textSize="18sp"
-                        android:layout_margin="8dp"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/total_social"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
                         android:layout_weight="3"
                         android:text="0 Ptos."
+                        android:textColor="@android:color/white"
                         android:textSize="15sp"
-                        android:layout_margin="8dp"
-                        android:textColor="@android:color/white"/>
+                        android:textAlignment="center"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/contenedor_social"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                  >
+                    android:orientation="vertical">
 
                 </LinearLayout>
             </LinearLayout>
@@ -347,12 +421,13 @@
                     <TextView
                         android:id="@+id/total_tecnico"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:text="0 Ptos"
                         android:textSize="15dp"
                         android:layout_margin="8dp"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:textAlignment="center"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/contenedor_tecnico"
@@ -393,12 +468,13 @@
                     <TextView
                         android:id="@+id/total_psico"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:text="0 Ptos"
                         android:textSize="15dp"
                         android:layout_margin="8dp"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white"
+                        android:textAlignment="center"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/contenedor_psico"
@@ -413,6 +489,9 @@
         </android.support.v7.widget.CardView>
     </LinearLayout>
     </ScrollView>
+
+
+
 
 
 </LinearLayout>

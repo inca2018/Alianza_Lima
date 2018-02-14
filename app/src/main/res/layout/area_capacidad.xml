@@ -12,9 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@mipmap/image_capacidad"
-        android:backgroundTint="@android:color/holo_blue_dark">
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,38 +37,42 @@
             android:checkedButton="@+id/c11"
             android:layout_weight="1"
             >
-            <RadioButton
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
 
         </RadioGroup>
 
@@ -98,38 +100,42 @@
             android:checkedButton="@+id/c21"
             android:layout_weight="1"
             >
-            <RadioButton
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
 
         </RadioGroup>
 
@@ -157,38 +163,42 @@
             android:checkedButton="@+id/c31"
             android:layout_weight="1"
             >
-            <RadioButton
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c31"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c33"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c34"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
         </RadioGroup>
 
     </LinearLayout>
@@ -215,38 +225,42 @@
             android:checkedButton="@+id/c41"
             android:layout_weight="1"
             >
-            <RadioButton
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c41"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c42"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c43"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
-            <RadioButton
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
+            <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/c44"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:layout_weight="1"
                 android:buttonTint="@android:color/white"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite"/>
         </RadioGroup>
 
     </LinearLayout>

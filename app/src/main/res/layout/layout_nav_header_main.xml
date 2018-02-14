@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="190dp"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondo_alianza"
     android:orientation="vertical"
     >
 
@@ -12,7 +12,7 @@
         android:id="@+id/profile_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@mipmap/icon_user_login"
+        android:src="@drawable/foto_perfil"
         app:border_color="#FF000000"
         android:layout_marginLeft="24dp"
         android:layout_centerVertical="true"
