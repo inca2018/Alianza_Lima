@@ -59,8 +59,10 @@
                            android:layout_width="match_parent"
                            android:layout_height="match_parent"
                            style="@style/titulo2"
-                           android:text="DEFINIR UBICACION DE TRABAJO"
-                           android:layout_weight="1"/>
+                           android:text=""
+                           android:textSize="10dp"
+                           android:layout_weight="1"
+                           android:gravity="center"/>
                        <ImageView
                            android:id="@+id/icon_ubigeo"
                            android:layout_width="match_parent"

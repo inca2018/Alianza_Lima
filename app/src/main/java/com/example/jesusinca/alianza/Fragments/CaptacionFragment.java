@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Captacion.CaptacionActivity;
 import com.example.jesusinca.alianza.Activities.Ubigeo.UbigeoActivity;
+import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 import com.example.jesusinca.alianza.Peticiones.RecuperarCodigoUsuario;
 import com.example.jesusinca.alianza.Peticiones.Validar_Ubigeo;
 import com.example.jesusinca.alianza.R;
@@ -33,19 +34,18 @@ import static com.example.jesusinca.alianza.Entity.Usuario.SESION_ACTUAL;
 public class CaptacionFragment extends Fragment {
     public Context mContext;
     Button accion1,accion2,accion3,accion4,accion5,accion6;
-
     TextView texto_ubigeo_Capta;
     ImageView imagen_ubigeo_Capta;
-    GestionUbigeo captacion;
+
     public CaptacionFragment() {
         // Required empty public constructor
     }
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
-        captacion=new GestionUbigeo();
+
         //setHasOptionsMenu(true);
+        Verificacion_UbigeoCaptacion();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,13 +62,12 @@ public class CaptacionFragment extends Fragment {
         accion5=(Button)v.findViewById(R.id.accion_5);
         accion6=(Button)v.findViewById(R.id.accion_6);
 
-         Verificacion_UbigeoCaptacion();
 
          accion1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(captacion.isEstado()==true){
+                if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
                     Intent intent= new Intent(mContext,CaptacionActivity.class);
                     startActivity(intent);
                 }else{
@@ -81,7 +80,7 @@ public class CaptacionFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(captacion.isEstado()==true){
+                if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
                     Intent intent= new Intent(mContext,CaptacionActivity.class);
                     startActivity(intent);
                 }else{
@@ -94,10 +93,11 @@ public class CaptacionFragment extends Fragment {
         imagen_ubigeo_Capta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(captacion.isEstado()==true){
-                    Toast.makeText(mContext, "ACTUALIZACION", Toast.LENGTH_SHORT).show();
+                if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
+                    Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    startActivity(intent);
                 }else{
-                    Toast.makeText(mContext, "NUEVO FECHA", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "NUEVO Ubigeo", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -106,9 +106,13 @@ public class CaptacionFragment extends Fragment {
     }
     private void Verificacion_UbigeoCaptacion() {
                int codigo_captacion=1;
+               GestionUbigeo.CAPTACION_UBIGEO.setCodigo_modulo(codigo_captacion);
                int codigo_usuario=SESION_ACTUAL.getId();
+               System.out.println("CODIGO_USER:"+codigo_usuario);
                Validar_Ubicacion(codigo_captacion,codigo_usuario,mContext);
+               System.out.println("PASO VERIFICACION INCA");
     }
+
     public void Validar_Ubicacion(final int id_user,final int id_modulo, final Context context) {
         String user = String.valueOf(id_user).trim();
         String modulo=String.valueOf(id_modulo).trim();
@@ -121,22 +125,43 @@ public class CaptacionFragment extends Fragment {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
+
+                        System.out.println("PASO SUCCESS");
                         String ubigeo_general=jsonResponse.getString("ubigeo_general");
                         switch (id_modulo){
                             case 1:
                                 boolean estado=jsonResponse.getBoolean("estado");
                                 if(estado==true){
-                                    SpannableString mitextoU = new SpannableString(ubigeo_general);
+                                    SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
                                     texto_ubigeo_Capta.setText(mitextoU);
                                     imagen_ubigeo_Capta.setImageResource(R.mipmap.icon_update);
-                                    captacion.setEstado(true);
+                                    GestionUbigeo.CAPTACION_UBIGEO.setEstado(true);
+
+                                    Unidad_Territorial Departamento=new Unidad_Territorial();
+                                    Departamento.setCodigo(jsonResponse.getInt("id_depa"));
+                                    Departamento.setDescripcion(jsonResponse.getString("desc_depa"));
+                                    Unidad_Territorial Provincia=new Unidad_Territorial();
+                                    Provincia.setCodigo(jsonResponse.getInt("id_prov"));
+                                    Provincia.setDescripcion(jsonResponse.getString("desc_prov"));
+                                    Unidad_Territorial Distrito=new Unidad_Territorial();
+                                    Distrito.setCodigo(jsonResponse.getInt("id_dist"));
+                                    Distrito.setDescripcion(jsonResponse.getString("desc_dist"));
+
+                                    GestionUbigeo.CAPTACION_UBIGEO.setDepartamento(Departamento);
+                                    GestionUbigeo.CAPTACION_UBIGEO.setProvincia(Provincia);
+                                    GestionUbigeo.CAPTACION_UBIGEO.setDistrito(Distrito);
+                                    GestionUbigeo.CAPTACION_UBIGEO.setUbigeo_descripcion(ubigeo_general);
+
+                                    System.out.println("PASO TRUE ESTADO");
                                 }else{
-                                    SpannableString mitextoU = new SpannableString(ubigeo_general);
+                                    SpannableString mitextoU = new SpannableString("SELECCIONE UBICACION DE TRABAJO");
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
                                     texto_ubigeo_Capta.setText(mitextoU);
                                     imagen_ubigeo_Capta.setImageResource(R.mipmap.icon_next);
-                                    captacion.setEstado(false);
+                                    GestionUbigeo.CAPTACION_UBIGEO.setEstado(false);
+
+                                    System.out.println("PASO FALSE ESTADO");
                                 }
 
                                 break;
@@ -156,7 +181,7 @@ public class CaptacionFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("Inca  : Error en Recupera codigo de usuario :"+e);
+                    System.out.println("Inca  : Error en Recupera ubigeo user:"+e);
                 }
             }
         };

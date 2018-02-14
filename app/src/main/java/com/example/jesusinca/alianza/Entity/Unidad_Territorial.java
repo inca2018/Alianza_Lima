@@ -11,7 +11,7 @@ public class Unidad_Territorial {
     int externo;
 
 
-    Unidad_Territorial(){
+    public Unidad_Territorial(){
 
     }
 

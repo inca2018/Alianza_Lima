@@ -2,6 +2,9 @@ package com.example.jesusinca.alianza.Utils;
 
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Jesus Inca on 14/02/2018.
  */
@@ -13,6 +16,9 @@ public class GestionUbigeo {
     Unidad_Territorial Distrito;
     String ubigeo_descripcion;
     boolean estado;
+
+    public static final GestionUbigeo CAPTACION_UBIGEO =new  GestionUbigeo();
+
     public  GestionUbigeo(){
     }
 
