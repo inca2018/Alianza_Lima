@@ -1,6 +1,7 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -58,7 +59,7 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
             diao=""+dia;
         }
 
-        String fecha_nacimiento=diao+"/"+meso+"/"+anoo;
+        String fecha_nacimiento=anoo+"-"+meso+"-"+diao;
         f_naci.setText(fecha_nacimiento);
 
 
@@ -73,7 +74,8 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
         estado=Verificar_Vacios();
 
         if(estado==true){
-            Toast.makeText(this, "Registro Correctamente", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegistroPostulantesActivity.this, ValidarDiagnosticoActivity.class);
+            RegistroPostulantesActivity.this.startActivity(intent);
         }else{
             String mensaje=Armar_Mensaje();
             Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();

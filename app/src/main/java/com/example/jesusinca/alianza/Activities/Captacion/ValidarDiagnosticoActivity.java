@@ -1,0 +1,246 @@
+package com.example.jesusinca.alianza.Activities.Captacion;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.example.jesusinca.alianza.Peticiones.RecuperarCodigoUsuario;
+import com.example.jesusinca.alianza.Peticiones.RegistrarPersonaRecuperarCodigo;
+import com.example.jesusinca.alianza.Peticiones.RegistrarResultadosDiagnostico;
+import com.example.jesusinca.alianza.R;
+import com.example.jesusinca.alianza.Utils.Diagnostico_Otros;
+import com.example.jesusinca.alianza.Utils.GestionUbigeo;
+import com.example.jesusinca.alianza.Utils.Recursos_Diagnostico;
+import com.example.jesusinca.alianza.Utils.Recursos_Registro_Postulante;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ValidarDiagnosticoActivity extends AppCompatActivity {
+
+    TextView nombre,ubigeo,total;
+    CardView verificar_resultados;
+    Context context;
+
+    int id_persona,id_fisico,id_social,id_capacidad,id_psico,id_tecnico;
+    ProgressDialog progressDialog;
+
+    List<String> RegistroPersona;
+    List<Integer> ResultadosDiagnostico;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_validar_diagnostico);
+        nombre=findViewById(R.id.resultado_persona);
+        ubigeo=findViewById(R.id.resultado_ubigeo);
+        total=findViewById(R.id.resultado_total);
+        context=this;
+        RegistroPersona=new ArrayList<>();
+        ResultadosDiagnostico=new ArrayList<>();
+
+        if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+            ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion()));
+        }else {
+            ubigeo.setText("Ubigeo no encontrado!");
+        }
+
+        if(Diagnostico_Otros.OTROS.getTotal_puntaje()!=0){
+            total.setText(Diagnostico_Otros.OTROS.getTotal_puntaje()+" Puntos");
+        }else{
+            total.setText("Total no encontrado");
+        }
+
+        if(Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor().length()!=0 && Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor().length()!=0){
+            String nombress=Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor()+" "+Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor();
+            nombre.setText(nombress.toUpperCase());
+        }
+
+
+
+
+        verificar_resultados=findViewById(R.id.confirmacion_resultados);
+
+
+        verificar_resultados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Armar_Resultados();
+
+            }
+        });
+    }
+
+    private void Armar_Resultados() {
+
+         for(int i=0;i<Recursos_Registro_Postulante.LISTA_REGISTRO.size();i++){
+            RegistroPersona.add(Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).getValor());
+         }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_FISICO.size();i++){
+            ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_FISICO.get(i).getResultado());
+        }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_CAPACIDAD.size();i++){
+            ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_CAPACIDAD.get(i).getResultado());
+        }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL.size();i++){
+            ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_SOCIAL.get(i).getResultado());
+        }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_TECNICO.size();i++){
+            ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_TECNICO.get(i).getResultado());
+        }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO.size();i++){
+            ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_PSICO.get(i).getResultado());
+        }
+
+
+        Registrar_Persona(RegistroPersona,context);
+
+    }
+
+    private void Registrar_Persona(final List<String> registroPersona,final Context context) {
+        String Nombres=registroPersona.get(0).toUpperCase().trim();
+        String Apellidos=registroPersona.get(1).toUpperCase().trim();
+        String Nacionalidad=registroPersona.get(2).toUpperCase().trim();
+        String Club=registroPersona.get(3).toUpperCase().trim();
+        String Liga=registroPersona.get(4).toUpperCase().trim();
+        String Categoria=registroPersona.get(5).toUpperCase().trim();
+        String Dni=registroPersona.get(6).toUpperCase().trim();
+        String FechaNacimiento=registroPersona.get(7).toUpperCase().trim();
+        String LugarResidencia=registroPersona.get(8).toUpperCase().trim();
+        String Telefonos=registroPersona.get(9).toUpperCase().trim();
+        String Correo=registroPersona.get(10).toUpperCase().trim();
+        String Apoderado=registroPersona.get(11).toUpperCase().trim();
+        String TelefonoApoderado=registroPersona.get(12).toUpperCase().trim();
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Registro");
+        progressDialog.setMessage("Enviando Información...");
+        progressDialog.show();
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        id_persona=jsonResponse.getInt("id_persona");
+
+                        if(id_persona==0){
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Problema de Conexión al Recuperar Codigo Persona", Toast.LENGTH_SHORT).show();
+                        }else{
+
+                            Registrar_Resultados(context,id_persona,ResultadosDiagnostico);
+
+                        }
+
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en Recupera codigo de usuario :"+e);
+                }
+            }
+        };
+
+        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+    }
+
+    private void Registrar_Resultados(final Context context,final  int id_personaa,final List<Integer> resultadosDiagnostico) {
+        String f1=String.valueOf(resultadosDiagnostico.get(0));
+        String f2=String.valueOf(resultadosDiagnostico.get(1));
+        String f3=String.valueOf(resultadosDiagnostico.get(2));
+        String f4=String.valueOf(resultadosDiagnostico.get(3));
+        String f5=String.valueOf(resultadosDiagnostico.get(4));
+        String f6=String.valueOf(resultadosDiagnostico.get(5));
+        String f7=String.valueOf(resultadosDiagnostico.get(6));
+        String c1=String.valueOf(resultadosDiagnostico.get(7));
+        String c2=String.valueOf(resultadosDiagnostico.get(8));
+        String c3=String.valueOf(resultadosDiagnostico.get(9));
+        String c4=String.valueOf(resultadosDiagnostico.get(10));
+        String s1=String.valueOf(resultadosDiagnostico.get(11));
+        String s2=String.valueOf(resultadosDiagnostico.get(12));
+        String s3=String.valueOf(resultadosDiagnostico.get(13));
+        String s4=String.valueOf(resultadosDiagnostico.get(14));
+        String t1=String.valueOf(resultadosDiagnostico.get(15));
+        String t2=String.valueOf(resultadosDiagnostico.get(16));
+        String t3=String.valueOf(resultadosDiagnostico.get(17));
+        String t4=String.valueOf(resultadosDiagnostico.get(18));
+        String t5=String.valueOf(resultadosDiagnostico.get(19));
+        String t6=String.valueOf(resultadosDiagnostico.get(20));
+        String p1=String.valueOf(resultadosDiagnostico.get(21));
+        String p2=String.valueOf(resultadosDiagnostico.get(22));
+        String p3=String.valueOf(resultadosDiagnostico.get(23));
+        String p4=String.valueOf(resultadosDiagnostico.get(24));
+
+        String id_persona=String.valueOf(id_personaa);
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        id_fisico=jsonResponse.getInt("id_fisico");
+                        id_capacidad=jsonResponse.getInt("id_capacidad");
+                        id_social=jsonResponse.getInt("id_social");
+                        id_tecnico=jsonResponse.getInt("id_tecnico");
+                        id_psico=jsonResponse.getInt("id_psico");
+
+                        Toast.makeText(context, "EXITOSOO", Toast.LENGTH_SHORT).show();
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en Recupera codigo de usuario :"+e);
+                }
+            }
+        };
+
+        RegistrarResultadosDiagnostico xx = new RegistrarResultadosDiagnostico(f1,f2,f3,f4,f5,f6,f7,c1,c2,c3,c4,s1,s2,s3,s4,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,id_persona,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+
+
+
+    }
+
+
+    void debug(String mensaje){
+        System.out.println(mensaje);
+    }
+}

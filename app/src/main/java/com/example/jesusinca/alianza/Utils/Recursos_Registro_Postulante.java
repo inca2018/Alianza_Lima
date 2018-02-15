@@ -49,48 +49,55 @@ public class Recursos_Registro_Postulante {
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
                 6,
+                R.id.capta_categoria,
+                null,
+                "!Ingrese Categoria del Postulante¡"
+                ,false,null));
+
+        LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
+                7,
                 R.id.capta_dni,
                 null,
                 "!Ingrese Dni del Postulante¡"
                 ,false,null));
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
-                7,
+                8,
                 R.id.capta_fecha_nacimiento,
                 null,
                 "!Ingrese Fecha de Nacimiento del Postulante¡"
                 ,false,null));
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
-                8,
+                9,
                 R.id.capta_residencia,
                 null,
                 "!Ingrese Lugar de Residencia del Postulante¡"
                 ,false,null));
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
-                9,
+                10,
                 R.id.capta_telefono1,
                 null,
                 "!Ingrese Telefonos de Contacto del Postulante¡"
                 ,false,null));
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
-                10,
+                11,
                 R.id.capta_email,
                 null,
                 "!Ingrese correo del Postulante¡"
                 ,false,null));
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
-                11,
+                12,
                 R.id.capta_apoderado,
                 null,
                 "!Ingrese Nombres del Apoderado del Postulante¡"
                 ,false,null));
 
         LISTA_REGISTRO.add(new RegistroCaptacion_funcional(
-                12,
+                13,
                 R.id.capta_telefono2,
                 null,
                 "!Ingrese Telefonos del Apoderado del Postulante¡"

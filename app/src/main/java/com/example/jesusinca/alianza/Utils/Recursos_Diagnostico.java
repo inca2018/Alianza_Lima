@@ -85,7 +85,7 @@ public class Recursos_Diagnostico {
                 R.id.c23,
                 R.id.c24,0));
         LISTA_CAPACIDAD.add(new Captacion_funcional("Inteligencia Táctica y Posicionamiento",R.id.opcion_capacidad3,
-                R.id.group_capacidad1,
+                R.id.group_capacidad3,
                 R.id.c31,
                 R.id.c32,
                 R.id.c33,

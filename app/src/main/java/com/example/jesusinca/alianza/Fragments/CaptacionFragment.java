@@ -50,8 +50,6 @@ public class CaptacionFragment extends Fragment {
         Verificacion_UbigeoCaptacion_Barrio();
 
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,7 +73,6 @@ public class CaptacionFragment extends Fragment {
 
         return v;
     }
-
     private void Acciones() {
         accion1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,7 +202,6 @@ public class CaptacionFragment extends Fragment {
         });
 
     }
-
     private void Verificacion_UbigeoCaptacion() {
                int codigo_captacion=1;
                GestionUbigeo.CAPTACION_UBIGEO.setCodigo_modulo(codigo_captacion);
@@ -223,7 +219,6 @@ public class CaptacionFragment extends Fragment {
 
 
     }
-
     private void Verificacion_UbigeoCaptacion_Barrio() {
         int codigo_captacion=3;
         GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setCodigo_modulo(codigo_captacion);
@@ -253,7 +248,7 @@ public class CaptacionFragment extends Fragment {
                             case 1:
 
                                 if(estado==true){
-                                    SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
+                                    SpannableString mitextoU = new SpannableString("UBICACION: "+ubigeo_general);
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
                                     texto_ubigeo_Capta.setText(mitextoU);
                                     imagen_ubigeo_Capta.setImageResource(R.mipmap.icon_update);
@@ -288,7 +283,7 @@ public class CaptacionFragment extends Fragment {
                                 break;
                             case 2:
                                 if(estado==true){
-                                    SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
+                                    SpannableString mitextoU = new SpannableString("UBICACION: "+ubigeo_general);
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
                                     texto_ubigeo_Capta_masivo.setText(mitextoU);
                                     imagen_ubigeo_Capta_masivo.setImageResource(R.mipmap.icon_update);
@@ -324,7 +319,7 @@ public class CaptacionFragment extends Fragment {
 
                             case 3:
                                 if(estado==true){
-                                    SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
+                                    SpannableString mitextoU = new SpannableString("UBICACION: "+ubigeo_general);
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
                                     texto_ubigeo_barrio.setText(mitextoU);
                                     imagen_ubigeo_barrio.setImageResource(R.mipmap.icon_update);

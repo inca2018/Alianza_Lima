@@ -5,149 +5,350 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.jesusinca.alianza.Fragments.CaptacionFragment">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
 
-       <ScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:gravity="center"
-           android:layout_centerHorizontal="true"
-           android:layout_centerVertical="true"
-           android:layout_margin="16dp"
-           android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
-           <android.support.v7.widget.CardView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:padding="16dp"
-               app:cardBackgroundColor="@android:color/white"
-               app:cardCornerRadius="10dp"
-               app:cardElevation="5dp"
-               android:layout_margin="8dp">
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
 
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
+                    android:padding="16dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   android:gravity="center"
-                   android:layout_centerHorizontal="true"
-                   android:layout_centerVertical="true"
-                   android:layout_margin="8dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       style="@style/titulo1"
-                       android:text="Captación Individual"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="8dp">
 
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       style="@style/titulo2"
-                       android:text="Captación Individual"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo1"
+                                android:text="Captación Individual"/>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-
-
-
-               </LinearLayout>
-
-               </RelativeLayout>
-
-           </android.support.v7.widget.CardView>
-
-           <android.support.v7.widget.CardView
-               android:layout_width="match_parent"
-               android:layout_height="200dp"
-               android:padding="16dp"
-               app:cardBackgroundColor="@android:color/white"
-               app:cardCornerRadius="10dp"
-               app:cardElevation="5dp"
-               android:layout_margin="8dp">
-
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
-
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_centerHorizontal="true"
-                       android:layout_centerVertical="true"
-                       android:gravity="center"
-                       android:orientation="vertical"
-                       android:layout_margin="8dp">
+                                <TextView
+                                    android:id="@+id/texto_ubigeo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/titulo2"
+                                    android:text=""
+                                    android:textSize="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textStyle="italic"/>
+                                <ImageView
+                                    android:id="@+id/icon_ubigeo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:src="@mipmap/icon_next"
+                                    android:tint="@color/blue"/>
 
 
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           style="@style/titulo1"
-                           android:text="Captación Masiva"/>
+                            </LinearLayout>
 
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           style="@style/titulo2"
-                           android:text="Captación Masiva"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo2"
+                                android:text="Realizar Captación - Prueba Diagnostico Individual"/>
 
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/blue"
+                                android:layout_margin="8dp">
+                                <Button
+                                    android:id="@+id/accion_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Realizar Diagnostico"
+                                    android:background="@android:color/transparent"
+                                    android:textColor="@color/colorWhite"
+                                    />
+                            </android.support.v7.widget.CardView>
 
-                   </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo2"
+                                android:text="Seguimiento de Postulante"/>
 
-               </RelativeLayout>
-
-           </android.support.v7.widget.CardView>
-
-           <android.support.v7.widget.CardView
-               android:layout_width="match_parent"
-               android:layout_height="200dp"
-               android:padding="16dp"
-               app:cardBackgroundColor="@android:color/white"
-               app:cardCornerRadius="10dp"
-               app:cardElevation="5dp"
-               android:layout_margin="8dp">
-
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
-
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:orientation="vertical"
-                       android:gravity="center"
-                       android:layout_centerHorizontal="true"
-                       android:layout_centerVertical="true"
-                       android:layout_margin="8dp">
-
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           style="@style/titulo1"
-                           android:text="Barrio Intimo"/>
-
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           style="@style/titulo2"
-                           android:text="Barrio Intimo"/>
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/blue"
+                                android:layout_margin="8dp">
+                                <Button
+                                    android:id="@+id/accion_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Seguimientos"
+                                    android:background="@android:color/transparent"
+                                    android:textColor="@color/colorWhite"
+                                    />
+                            </android.support.v7.widget.CardView>
 
 
-                   </LinearLayout>
 
-               </RelativeLayout>
+                        </LinearLayout>
 
-           </android.support.v7.widget.CardView>
-       </LinearLayout>
-       </ScrollView>
-   </RelativeLayout>
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:padding="16dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_margin="8dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo1"
+                                android:text="Captación Masiva"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/texto_ubigeo_masivo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/titulo2"
+                                    android:text=""
+                                    android:textSize="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textStyle="italic"/>
+                                <ImageView
+                                    android:id="@+id/icon_ubigeo_masivo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:src="@mipmap/icon_next"
+                                    android:tint="@color/blue"/>
+
+
+                            </LinearLayout>
+
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo2"
+                                android:text="Creación de Pruebas Masivas"/>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/deep_naranja400"
+                                android:layout_margin="8dp">
+                                <Button
+                                    android:id="@+id/accion_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Crear Nueva Relación"
+                                    android:background="@android:color/transparent"
+                                    android:textColor="@color/colorWhite"
+                                    />
+                            </android.support.v7.widget.CardView>
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo2"
+                                android:text="Relacion de Pruebas Masivas"/>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/deep_naranja400"
+                                android:layout_margin="8dp">
+                                <Button
+                                    android:id="@+id/accion_4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ver Listas"
+                                    android:background="@android:color/transparent"
+                                    android:textColor="@color/colorWhite"
+                                    />
+                            </android.support.v7.widget.CardView>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:padding="16dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="8dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo1"
+                                android:text="Barrio Intimo"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/texto_ubigeo_barrio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/titulo2"
+                                    android:text=""
+                                    android:textSize="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:textStyle="italic"/>
+                                <ImageView
+                                    android:id="@+id/icon_ubigeo_barrio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="3"
+                                    android:src="@mipmap/icon_next"
+                                    android:tint="@color/blue"/>
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo2"
+                                android:text="Creación de Evento"/>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/verde_bajo"
+                                android:layout_margin="8dp">
+                                <Button
+                                    android:id="@+id/accion_5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nuevo Evento"
+                                    android:background="@android:color/transparent"
+                                    android:textColor="@color/colorWhite"
+                                    />
+                            </android.support.v7.widget.CardView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/titulo2"
+                                android:text="Lista de Eventos "/>
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/verde_bajo"
+                                android:layout_margin="8dp">
+                                <Button
+                                    android:id="@+id/accion_6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ver Listas"
+                                    android:background="@android:color/transparent"
+                                    android:textColor="@color/colorWhite"
+                                    />
+                            </android.support.v7.widget.CardView>
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
 </FrameLayout>

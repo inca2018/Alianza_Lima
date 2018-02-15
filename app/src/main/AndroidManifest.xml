@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Activities.Inicio.MainActivity" />
-        <activity android:name=".Activities.Captacion.CaptacionActivity" />
+        <activity
+            android:name=".Activities.Captacion.CaptacionActivity"
+            android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Captacion.PruebaAnimacionActivity" />
         <activity android:name=".Activities.Captacion.RegistroPostulantesActivity" />
         <activity android:name=".Activities.Inicio.LoginActivity">
@@ -22,8 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.Inicio.PrincipalActivity" />
-        <activity android:name=".Activities.Ubigeo.UbigeoActivity"></activity>
+        <activity
+            android:name=".Activities.Inicio.PrincipalActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Ubigeo.UbigeoActivity" />
+        <activity android:name=".Activities.Captacion.ValidarDiagnosticoActivity"></activity>
     </application>
 
 </manifest>

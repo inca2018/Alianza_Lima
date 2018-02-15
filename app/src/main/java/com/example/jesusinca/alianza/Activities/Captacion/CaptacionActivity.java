@@ -1,5 +1,6 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,23 +9,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Inicio.LoginActivity;
 import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
+import com.example.jesusinca.alianza.Entity.Posicion;
+import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
+import com.example.jesusinca.alianza.Peticiones.RecuperarDepartamentos;
+import com.example.jesusinca.alianza.Peticiones.RecuperarPosiciones;
 import com.example.jesusinca.alianza.R;
 import com.example.jesusinca.alianza.Utils.Captacion_Vista;
 import com.example.jesusinca.alianza.Utils.Captacion_funcional;
+import com.example.jesusinca.alianza.Utils.Diagnostico_Otros;
+import com.example.jesusinca.alianza.Utils.GestionUbigeo;
 import com.example.jesusinca.alianza.Utils.Recursos_Diagnostico;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CaptacionActivity extends AppCompatActivity {
     CardView card,card_aprobacion;
     ScrollView scroll;
     Spinner sugerido1,sugerido2,sugerido3;
+    TextView ubicacion_texto;
+    Context context;
+    List<Posicion> ListaPosiciones;
+    String[] ArregloString_Posiciones;
+    RadioGroup opciones_lateralidad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,23 +56,153 @@ public class CaptacionActivity extends AppCompatActivity {
         card=findViewById(R.id.card_totalizado);
         card_aprobacion=findViewById(R.id.card_aprobacion);
         scroll=findViewById(R.id.scroll_captacion);
+        ubicacion_texto=findViewById(R.id.ubicacion_texto);
+        sugerido1=findViewById(R.id.sugerido1);
+        sugerido2=findViewById(R.id.sugerido2);
+        sugerido3=findViewById(R.id.sugerido3);
+        opciones_lateralidad=findViewById(R.id.opciones_lateralidad);
+        ListaPosiciones=new ArrayList<>();
+        context=this;
 
+        Listar_Posiciones(context);
+
+        if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+            ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+        }else{
+            ubicacion_texto.setText("Ubicación no disponible");
+        }
 
         // Animaciones de Vistas Captacion
          Creacion_Animaciones();
-
         //Seleccion de Opciones group checked!
         Seteo_RadioGroups();
-
         card_aprobacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
                 CaptacionActivity.this.startActivity(intent);
+
+            }
+        });
+        Verificar_lateralidad();
+        Verificar_Sugeridos();
+    }
+    private void debug(String mensaje){
+        System.out.println(mensaje);
+    }
+    private void Verificar_Sugeridos() {
+        sugerido1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Object item = adapterView.getItemAtPosition(i);
+                for(int x=0;x<ListaPosiciones.size();x++){
+                    if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
+                         Diagnostico_Otros.OTROS.setSugerido1(ListaPosiciones.get(x));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        sugerido2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Object item = adapterView.getItemAtPosition(i);
+                for(int x=0;x<ListaPosiciones.size();x++){
+                    if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
+                        Diagnostico_Otros.OTROS.setSugerido2(ListaPosiciones.get(x));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        sugerido3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Object item = adapterView.getItemAtPosition(i);
+                for(int x=0;x<ListaPosiciones.size();x++){
+                    if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
+                        Diagnostico_Otros.OTROS.setSugerido3(ListaPosiciones.get(x));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
+    private void Verificar_lateralidad() {
 
+        opciones_lateralidad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i==R.id.lateral_derecho){
+                    Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD DERECHA");
+                }else if(i==R.id.lateral_izquierdo){
+                    Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD IZQUIERDA");
+                }else if(i==R.id.lateral_ambos){
+                    Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD AMBAS PIERNAS");
+                }
+            }
+        });
+    }
+    private void Listar_Posiciones(final Context context) {
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        JSONArray departamentos=jsonResponse.getJSONArray("posiciones");
+                        for(int i=0;i<departamentos.length();i++){
+                            JSONObject objeto= departamentos.getJSONObject(i);
+                            Posicion temp=new Posicion();
+                            temp.setId(objeto.getInt("ID"));
+                            temp.setNombre_Posicione(objeto.getString("NOMBRE_POSICION"));
+                            temp.setEstado(objeto.getInt("ESTADO"));
+                            ListaPosiciones.add(temp);
+                        }
+
+                        ArregloString_Posiciones=new String[ListaPosiciones.size()];
+                        for(int i=0;i<ListaPosiciones.size();i++){
+                            ArregloString_Posiciones[i]=ListaPosiciones.get(i).getNombre_Posicione();
+                        }
+                        ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,ArregloString_Posiciones);
+                        sugerido1.setAdapter(adapter_arr);
+                        sugerido2.setAdapter(adapter_arr);
+                        sugerido3.setAdapter(adapter_arr);
+
+                    } else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
+                }
+            }
+        };
+
+        RecuperarPosiciones xx = new RecuperarPosiciones(responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+    }
     private void Seteo_RadioGroups() {
 
         for(int i = 0; i< Recursos_Diagnostico.LISTA_FISICO.size(); i++){
@@ -148,6 +302,7 @@ public class CaptacionActivity extends AppCompatActivity {
         TextView total_g=findViewById(R.id.total_captacion);
         total_general=total1+total2+total3+total4+total5;
         total_g.setText(total_general+" Ptos.");
+        Diagnostico_Otros.OTROS.setTotal_puntaje(total_general);
 
         if(total_general>=45 && total_general<=49){
             card.setCardBackgroundColor(getResources().getColor(R.color.Orange));

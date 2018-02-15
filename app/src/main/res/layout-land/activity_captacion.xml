@@ -20,18 +20,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:text="CAPTACIÓN"
-                android:textColor="@android:color/white"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="CAPTACIÓN"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/ubicacion_texto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Ubicación de Diagnostico: "
+                    android:textColor="@android:color/white"
+                    android:textSize="12dp"
+                    android:textStyle="italic"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/total_captacion"
@@ -55,7 +73,8 @@
         android:layout_margin="4dp"
         app:cardBackgroundColor="@color/verde_bajo"
         app:cardCornerRadius="10dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,7 +88,7 @@
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="REGISTRAR POSTULANTE"
+                android:text="CONTINUAR CON REGISTR"
                 android:textColor="@android:color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />

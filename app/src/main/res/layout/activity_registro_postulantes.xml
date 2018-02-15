@@ -307,7 +307,7 @@
                             android:background="@android:color/transparent"
                             android:gravity="center"
                             android:onClick="guardar_deportista"
-                            android:text="REGISTRAR"
+                            android:text="CONTINUAR"
                             android:textColor="@android:color/white"
                             android:textStyle="bold" />
 
