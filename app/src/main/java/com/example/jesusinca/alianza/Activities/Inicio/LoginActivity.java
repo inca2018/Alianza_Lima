@@ -71,10 +71,10 @@ public class LoginActivity extends AppCompatActivity {
 
              if(pass.length()!=0){
          //Inicio de progress de carga
-         progressDialog = new ProgressDialog(context);
-         progressDialog.setTitle("Login");
-         progressDialog.setMessage("Verificando Usuario...");
-         progressDialog.show();
+                  progressDialog = new ProgressDialog(context);
+                 progressDialog.setTitle("Login");
+                 progressDialog.setMessage("Verificando Usuario...");
+                 progressDialog.show();
 
         //Recuperar mensaje de validacion , Vacio= Ingreso , LLeno = Mensaje de error (usuario no existe, password incorrecto)
          // String mensaje=Servicio_login.Validar_Sesion(usuario,pass,this);

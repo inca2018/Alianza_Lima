@@ -34,8 +34,8 @@ import static com.example.jesusinca.alianza.Entity.Usuario.SESION_ACTUAL;
 public class CaptacionFragment extends Fragment {
     public Context mContext;
     Button accion1,accion2,accion3,accion4,accion5,accion6;
-    TextView texto_ubigeo_Capta;
-    ImageView imagen_ubigeo_Capta;
+    TextView texto_ubigeo_Capta,texto_ubigeo_Capta_masivo,texto_ubigeo_barrio;
+    ImageView imagen_ubigeo_Capta,imagen_ubigeo_Capta_masivo,imagen_ubigeo_barrio;
 
     public CaptacionFragment() {
         // Required empty public constructor
@@ -46,7 +46,12 @@ public class CaptacionFragment extends Fragment {
 
         //setHasOptionsMenu(true);
         Verificacion_UbigeoCaptacion();
+        Verificacion_UbigeoCaptacion_Masivo();
+        Verificacion_UbigeoCaptacion_Barrio();
+
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,6 +60,10 @@ public class CaptacionFragment extends Fragment {
         accion1=(Button)v.findViewById(R.id.accion_1);
         texto_ubigeo_Capta=v.findViewById(R.id.texto_ubigeo);
         imagen_ubigeo_Capta=v.findViewById(R.id.icon_ubigeo);
+        texto_ubigeo_Capta_masivo=v.findViewById(R.id.texto_ubigeo_masivo);
+        imagen_ubigeo_Capta_masivo=v.findViewById(R.id.icon_ubigeo_masivo);
+        texto_ubigeo_barrio=v.findViewById(R.id.texto_ubigeo_barrio);
+        imagen_ubigeo_barrio=v.findViewById(R.id.icon_ubigeo_barrio);
 
         accion2=(Button)v.findViewById(R.id.accion_2);
         accion3=(Button)v.findViewById(R.id.accion_3);
@@ -62,11 +71,15 @@ public class CaptacionFragment extends Fragment {
         accion5=(Button)v.findViewById(R.id.accion_5);
         accion6=(Button)v.findViewById(R.id.accion_6);
 
+       Acciones();
 
-         accion1.setOnClickListener(new View.OnClickListener() {
+        return v;
+    }
+
+    private void Acciones() {
+        accion1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
                     Intent intent= new Intent(mContext,CaptacionActivity.class);
                     startActivity(intent);
@@ -75,7 +88,6 @@ public class CaptacionFragment extends Fragment {
                 }
             }
         });
-
         accion2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,36 +98,145 @@ public class CaptacionFragment extends Fragment {
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+        accion3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
+                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        accion4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
+                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        accion5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
+                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        accion6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
+                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         imagen_ubigeo_Capta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
                     Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    intent.putExtra("TYPE","UPDATE");
+                    intent.putExtra("MODULO","1");
                     startActivity(intent);
                 }else{
-                    Toast.makeText(mContext, "NUEVO Ubigeo", Toast.LENGTH_SHORT).show();
+                    Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    intent.putExtra("TYPE","NEW");
+                    intent.putExtra("MODULO","1");
+                    startActivity(intent);
+                }
+            }
+        });
+        imagen_ubigeo_Capta_masivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
+                    Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    intent.putExtra("TYPE","UPDATE");
+                    intent.putExtra("MODULO","2");
+                    startActivity(intent);
+                }else{
+                    Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    intent.putExtra("TYPE","NEW");
+                    intent.putExtra("MODULO","2");
+                    startActivity(intent);
                 }
             }
         });
 
-        return v;
+
+        imagen_ubigeo_barrio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
+                    Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    intent.putExtra("TYPE","UPDATE");
+                    intent.putExtra("MODULO","3");
+                    startActivity(intent);
+                }else{
+                    Intent intent= new Intent(mContext,UbigeoActivity.class);
+                    intent.putExtra("TYPE","NEW");
+                    intent.putExtra("MODULO","3");
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
+
     private void Verificacion_UbigeoCaptacion() {
                int codigo_captacion=1;
                GestionUbigeo.CAPTACION_UBIGEO.setCodigo_modulo(codigo_captacion);
                int codigo_usuario=SESION_ACTUAL.getId();
-               System.out.println("CODIGO_USER:"+codigo_usuario);
-               Validar_Ubicacion(codigo_captacion,codigo_usuario,mContext);
-               System.out.println("PASO VERIFICACION INCA");
+               System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
+               Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO.getCodigo_modulo(),mContext);
+
+    }
+    private void Verificacion_UbigeoCaptacion_Masivo() {
+        int codigo_captacion=2;
+        GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setCodigo_modulo(codigo_captacion);
+        int codigo_usuario=SESION_ACTUAL.getId();
+        System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
+        Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getCodigo_modulo(),mContext);
+
+
     }
 
+    private void Verificacion_UbigeoCaptacion_Barrio() {
+        int codigo_captacion=3;
+        GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setCodigo_modulo(codigo_captacion);
+        int codigo_usuario=SESION_ACTUAL.getId();
+        System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
+        Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getCodigo_modulo(),mContext);
+
+    }
     public void Validar_Ubicacion(final int id_user,final int id_modulo, final Context context) {
         String user = String.valueOf(id_user).trim();
         String modulo=String.valueOf(id_modulo).trim();
+
+        System.out.println("buscando modulos:"+modulo);
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -126,11 +247,11 @@ public class CaptacionFragment extends Fragment {
 
                     if (success) {
 
-                        System.out.println("PASO SUCCESS");
                         String ubigeo_general=jsonResponse.getString("ubigeo_general");
+                        boolean estado=jsonResponse.getBoolean("estado");
                         switch (id_modulo){
                             case 1:
-                                boolean estado=jsonResponse.getBoolean("estado");
+
                                 if(estado==true){
                                     SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
@@ -153,7 +274,7 @@ public class CaptacionFragment extends Fragment {
                                     GestionUbigeo.CAPTACION_UBIGEO.setDistrito(Distrito);
                                     GestionUbigeo.CAPTACION_UBIGEO.setUbigeo_descripcion(ubigeo_general);
 
-                                    System.out.println("PASO TRUE ESTADO");
+                                    System.out.println("PASO TRUE ESTADO MODULO 1");
                                 }else{
                                     SpannableString mitextoU = new SpannableString("SELECCIONE UBICACION DE TRABAJO");
                                     mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
@@ -161,11 +282,79 @@ public class CaptacionFragment extends Fragment {
                                     imagen_ubigeo_Capta.setImageResource(R.mipmap.icon_next);
                                     GestionUbigeo.CAPTACION_UBIGEO.setEstado(false);
 
-                                    System.out.println("PASO FALSE ESTADO");
+                                    System.out.println("PASO FALSE ESTADO MODULO 1");
                                 }
 
                                 break;
                             case 2:
+                                if(estado==true){
+                                    SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
+                                    mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
+                                    texto_ubigeo_Capta_masivo.setText(mitextoU);
+                                    imagen_ubigeo_Capta_masivo.setImageResource(R.mipmap.icon_update);
+                                    GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setEstado(true);
+
+                                    Unidad_Territorial Departamento=new Unidad_Territorial();
+                                    Departamento.setCodigo(jsonResponse.getInt("id_depa"));
+                                    Departamento.setDescripcion(jsonResponse.getString("desc_depa"));
+                                    Unidad_Territorial Provincia=new Unidad_Territorial();
+                                    Provincia.setCodigo(jsonResponse.getInt("id_prov"));
+                                    Provincia.setDescripcion(jsonResponse.getString("desc_prov"));
+                                    Unidad_Territorial Distrito=new Unidad_Territorial();
+                                    Distrito.setCodigo(jsonResponse.getInt("id_dist"));
+                                    Distrito.setDescripcion(jsonResponse.getString("desc_dist"));
+
+                                    GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setDepartamento(Departamento);
+                                    GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setProvincia(Provincia);
+                                    GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setDistrito(Distrito);
+                                    GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setUbigeo_descripcion(ubigeo_general);
+
+                                    System.out.println("PASO TRUE ESTADO MODULO 2");
+                                }else{
+                                    SpannableString mitextoU = new SpannableString("SELECCIONE UBICACION DE TRABAJO");
+                                    mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
+                                    texto_ubigeo_Capta_masivo.setText(mitextoU);
+                                    imagen_ubigeo_Capta_masivo.setImageResource(R.mipmap.icon_next);
+                                    GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setEstado(false);
+
+                                    System.out.println("PASO FALSE ESTADO MODULO 2");
+                                }
+
+                                break;
+
+                            case 3:
+                                if(estado==true){
+                                    SpannableString mitextoU = new SpannableString("UBICACION:"+ubigeo_general);
+                                    mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
+                                    texto_ubigeo_barrio.setText(mitextoU);
+                                    imagen_ubigeo_barrio.setImageResource(R.mipmap.icon_update);
+                                    GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setEstado(true);
+
+                                    Unidad_Territorial Departamento=new Unidad_Territorial();
+                                    Departamento.setCodigo(jsonResponse.getInt("id_depa"));
+                                    Departamento.setDescripcion(jsonResponse.getString("desc_depa"));
+                                    Unidad_Territorial Provincia=new Unidad_Territorial();
+                                    Provincia.setCodigo(jsonResponse.getInt("id_prov"));
+                                    Provincia.setDescripcion(jsonResponse.getString("desc_prov"));
+                                    Unidad_Territorial Distrito=new Unidad_Territorial();
+                                    Distrito.setCodigo(jsonResponse.getInt("id_dist"));
+                                    Distrito.setDescripcion(jsonResponse.getString("desc_dist"));
+
+                                    GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setDepartamento(Departamento);
+                                    GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setProvincia(Provincia);
+                                    GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setDistrito(Distrito);
+                                    GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setUbigeo_descripcion(ubigeo_general);
+
+                                    System.out.println("PASO TRUE ESTADO MODULO 3");
+                                }else{
+                                    SpannableString mitextoU = new SpannableString("SELECCIONE UBICACION DE TRABAJO");
+                                    mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
+                                    texto_ubigeo_barrio.setText(mitextoU);
+                                    imagen_ubigeo_barrio.setImageResource(R.mipmap.icon_next);
+                                    GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setEstado(false);
+
+                                    System.out.println("PASO FALSE ESTADO MODULO 3");
+                                }
 
                                 break;
 

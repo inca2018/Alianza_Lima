@@ -60,9 +60,10 @@
                            android:layout_height="match_parent"
                            style="@style/titulo2"
                            android:text=""
-                           android:textSize="10dp"
+                           android:textSize="12dp"
                            android:layout_weight="1"
-                           android:gravity="center"/>
+                           android:gravity="center"
+                           android:textStyle="italic"/>
                        <ImageView
                            android:id="@+id/icon_ubigeo"
                            android:layout_width="match_parent"
@@ -156,6 +157,32 @@
                            style="@style/titulo1"
                            android:text="Captación Masiva"/>
 
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="horizontal">
+
+                           <TextView
+                               android:id="@+id/texto_ubigeo_masivo"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               style="@style/titulo2"
+                               android:text=""
+                               android:textSize="12dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:textStyle="italic"/>
+                           <ImageView
+                               android:id="@+id/icon_ubigeo_masivo"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_weight="3"
+                               android:src="@mipmap/icon_next"
+                               android:tint="@color/blue"/>
+
+
+                       </LinearLayout>
+
 
 
                        <TextView
@@ -238,6 +265,32 @@
                            android:layout_height="wrap_content"
                            style="@style/titulo1"
                            android:text="Barrio Intimo"/>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="horizontal">
+
+                           <TextView
+                               android:id="@+id/texto_ubigeo_barrio"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               style="@style/titulo2"
+                               android:text=""
+                               android:textSize="12dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:textStyle="italic"/>
+                           <ImageView
+                               android:id="@+id/icon_ubigeo_barrio"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_weight="3"
+                               android:src="@mipmap/icon_next"
+                               android:tint="@color/blue"/>
+
+
+                       </LinearLayout>
 
                        <TextView
                            android:layout_width="match_parent"

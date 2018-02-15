@@ -24,7 +24,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="8dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,6 +73,28 @@
                     android:layout_margin="8dp">
 
                 </Spinner>
+
+
+
+                <android.support.v7.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@android:color/holo_blue_dark"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
+
+
+                    <Button
+                        android:id="@+id/guardar_ubigeo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="GUARDAR UBIGEO"
+                        android:textColor="@color/blanco"
+                        android:background="@android:color/transparent"/>
+
+                </android.support.v7.widget.CardView>
             </LinearLayout>
 
 
