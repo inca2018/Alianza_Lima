@@ -11,7 +11,7 @@
     <item name="purple" type="color">#9c27b0</item>
     <item name="green" type="color">#1b5e20</item>
     <item name="orange" type="color">#ff5722</item>
-    <item name="red" type="color">#f44336</item>
+
     <item name="indigo" type="color">#3f51b5</item>
     <item name="deep_purple" type="color">#673ab7</item>
     <item name="light_green" type="color">#689f38</item>
@@ -25,11 +25,17 @@
     <item name="deep_naranja400" type="color">#FF7043</item>
 
 
+    <item name="amarillo" type="color">#FFD600</item>
+    <item name="verde" type="color">#4CAF50</item>
+    <item name="red" type="color">#f44336</item>
+
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorDivider">#B6B6B6</color>
+
+
 
 
     <color name="col1">#FFEBEE</color>

@@ -74,7 +74,7 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
         estado=Verificar_Vacios();
 
         if(estado==true){
-            Intent intent = new Intent(RegistroPostulantesActivity.this, ValidarDiagnosticoActivity.class);
+            Intent intent = new Intent(RegistroPostulantesActivity.this, ValidarDiagnosticoIndividualActivity.class);
             RegistroPostulantesActivity.this.startActivity(intent);
         }else{
             String mensaje=Armar_Mensaje();

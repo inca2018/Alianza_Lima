@@ -19,7 +19,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Captacion.CaptacionActivity;
+import com.example.jesusinca.alianza.Activities.Captacion.MasivoCreacionActivity;
 import com.example.jesusinca.alianza.Activities.Ubigeo.UbigeoActivity;
+import com.example.jesusinca.alianza.ActivityEntity.modulo_captacion;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 import com.example.jesusinca.alianza.Peticiones.RecuperarCodigoUsuario;
 import com.example.jesusinca.alianza.Peticiones.Validar_Ubigeo;
@@ -29,6 +31,7 @@ import com.example.jesusinca.alianza.Utils.GestionUbigeo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.jesusinca.alianza.ActivityEntity.modulo_captacion.BASE;
 import static com.example.jesusinca.alianza.Entity.Usuario.SESION_ACTUAL;
 
 public class CaptacionFragment extends Fragment {
@@ -102,7 +105,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
-                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    Intent intent= new Intent(mContext,MasivoCreacionActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
@@ -114,7 +117,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
-                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    Intent intent= new Intent(mContext,MasivoCreacionActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
@@ -127,7 +130,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
-                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    Intent intent= new Intent(mContext,MasivoCreacionActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
@@ -206,6 +209,9 @@ public class CaptacionFragment extends Fragment {
                int codigo_captacion=1;
                GestionUbigeo.CAPTACION_UBIGEO.setCodigo_modulo(codigo_captacion);
                int codigo_usuario=SESION_ACTUAL.getId();
+
+               BASE.setId_usuario(SESION_ACTUAL.getId());
+
                System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
                Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO.getCodigo_modulo(),mContext);
 
@@ -214,6 +220,8 @@ public class CaptacionFragment extends Fragment {
         int codigo_captacion=2;
         GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setCodigo_modulo(codigo_captacion);
         int codigo_usuario=SESION_ACTUAL.getId();
+
+        BASE.setId_usuario(SESION_ACTUAL.getId());
         System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
         Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getCodigo_modulo(),mContext);
 
@@ -223,6 +231,8 @@ public class CaptacionFragment extends Fragment {
         int codigo_captacion=3;
         GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setCodigo_modulo(codigo_captacion);
         int codigo_usuario=SESION_ACTUAL.getId();
+
+        BASE.setId_usuario(SESION_ACTUAL.getId());
         System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
         Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getCodigo_modulo(),mContext);
 
@@ -269,6 +279,8 @@ public class CaptacionFragment extends Fragment {
                                     GestionUbigeo.CAPTACION_UBIGEO.setDistrito(Distrito);
                                     GestionUbigeo.CAPTACION_UBIGEO.setUbigeo_descripcion(ubigeo_general);
 
+
+
                                     System.out.println("PASO TRUE ESTADO MODULO 1");
                                 }else{
                                     SpannableString mitextoU = new SpannableString("SELECCIONE UBICACION DE TRABAJO");
@@ -303,6 +315,8 @@ public class CaptacionFragment extends Fragment {
                                     GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setProvincia(Provincia);
                                     GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setDistrito(Distrito);
                                     GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setUbigeo_descripcion(ubigeo_general);
+
+
 
                                     System.out.println("PASO TRUE ESTADO MODULO 2");
                                 }else{
@@ -339,6 +353,8 @@ public class CaptacionFragment extends Fragment {
                                     GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setProvincia(Provincia);
                                     GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setDistrito(Distrito);
                                     GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setUbigeo_descripcion(ubigeo_general);
+
+
 
                                     System.out.println("PASO TRUE ESTADO MODULO 3");
                                 }else{

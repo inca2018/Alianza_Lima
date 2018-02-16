@@ -28,7 +28,10 @@
             android:name=".Activities.Inicio.PrincipalActivity"
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Ubigeo.UbigeoActivity" />
-        <activity android:name=".Activities.Captacion.ValidarDiagnosticoActivity"></activity>
+        <activity android:name=".Activities.Captacion.ValidarDiagnosticoIndividualActivity" />
+        <activity android:name=".Activities.Captacion.MasivoCreacionActivity" />
+        <activity android:name=".Activities.Captacion.NuevoMasivoActivity" />
+        <activity android:name=".Activities.Captacion.MasivoListaPersonaActivity"></activity>
     </application>
 
 </manifest>

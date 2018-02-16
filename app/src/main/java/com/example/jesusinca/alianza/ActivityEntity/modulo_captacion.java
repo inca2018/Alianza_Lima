@@ -1,5 +1,7 @@
 package com.example.jesusinca.alianza.ActivityEntity;
 
+import com.example.jesusinca.alianza.Entity.Posicion;
+import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 import com.example.jesusinca.alianza.Utils.Captacion_Vista;
 
 import java.util.List;
@@ -10,19 +12,19 @@ import java.util.List;
 
 public class modulo_captacion {
     int id_persona;
-    String fecha_registro;
-    int departamento_id;
-    int provincia_id;
-    int distrito_id;
-    int id_scout;
+    Unidad_Territorial Departamento;
+    Unidad_Territorial Provincia;
+    Unidad_Territorial Distrito;
+    String DescripcionUbigeo;
+    int id_usuario;
     int campo_fisico_id;
     int campo_capacidad_id;
     int campo_social_id;
     int campo_tecnico_id;
     int campo_psico_id;
-    int sugerido_1;
-    int sugerido_2;
-    int sugerido_3;
+    Posicion sugerido_1;
+    Posicion sugerido_2;
+    Posicion sugerido_3;
     String lateralidad;
     int estado;
     List<Integer> Resultados_Fisico;
@@ -30,13 +32,62 @@ public class modulo_captacion {
     List<Integer> Resultados_social;
     List<Integer> Resultados_tecnico;
     List<Integer> Resultados_psico;
+    List<String>  DatosPostulante;
 
+
+    public final static modulo_captacion BASE = new modulo_captacion();
 
     public modulo_captacion(){
 
     }
 
+    public String getDescripcionUbigeo() {
+        return DescripcionUbigeo;
+    }
 
+    public void setDescripcionUbigeo(String descripcionUbigeo) {
+        DescripcionUbigeo = descripcionUbigeo;
+    }
+
+    public Unidad_Territorial getDepartamento() {
+        return Departamento;
+    }
+
+    public void setDepartamento(Unidad_Territorial departamento) {
+        Departamento = departamento;
+    }
+
+    public Unidad_Territorial getProvincia() {
+        return Provincia;
+    }
+
+    public void setProvincia(Unidad_Territorial provincia) {
+        Provincia = provincia;
+    }
+
+    public Unidad_Territorial getDistrito() {
+        return Distrito;
+    }
+
+    public void setDistrito(Unidad_Territorial distrito) {
+        Distrito = distrito;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public List<String> getDatosPostulante() {
+        return DatosPostulante;
+    }
+
+    public void setDatosPostulante(List<String> datosPostulante) {
+        DatosPostulante = datosPostulante;
+    }
 
     public List<Integer> getResultados_Fisico() {
         return Resultados_Fisico;
@@ -86,45 +137,6 @@ public class modulo_captacion {
         this.id_persona = id_persona;
     }
 
-    public String getFecha_registro() {
-        return fecha_registro;
-    }
-
-    public void setFecha_registro(String fecha_registro) {
-        this.fecha_registro = fecha_registro;
-    }
-
-    public int getDepartamento_id() {
-        return departamento_id;
-    }
-
-    public void setDepartamento_id(int departamento_id) {
-        this.departamento_id = departamento_id;
-    }
-
-    public int getProvincia_id() {
-        return provincia_id;
-    }
-
-    public void setProvincia_id(int provincia_id) {
-        this.provincia_id = provincia_id;
-    }
-
-    public int getDistrito_id() {
-        return distrito_id;
-    }
-
-    public void setDistrito_id(int distrito_id) {
-        this.distrito_id = distrito_id;
-    }
-
-    public int getId_scout() {
-        return id_scout;
-    }
-
-    public void setId_scout(int id_scout) {
-        this.id_scout = id_scout;
-    }
 
     public int getCampo_fisico_id() {
         return campo_fisico_id;
@@ -166,27 +178,27 @@ public class modulo_captacion {
         this.campo_psico_id = campo_psico_id;
     }
 
-    public int getSugerido_1() {
+    public Posicion getSugerido_1() {
         return sugerido_1;
     }
 
-    public void setSugerido_1(int sugerido_1) {
+    public void setSugerido_1(Posicion sugerido_1) {
         this.sugerido_1 = sugerido_1;
     }
 
-    public int getSugerido_2() {
+    public Posicion getSugerido_2() {
         return sugerido_2;
     }
 
-    public void setSugerido_2(int sugerido_2) {
+    public void setSugerido_2(Posicion sugerido_2) {
         this.sugerido_2 = sugerido_2;
     }
 
-    public int getSugerido_3() {
+    public Posicion getSugerido_3() {
         return sugerido_3;
     }
 
-    public void setSugerido_3(int sugerido_3) {
+    public void setSugerido_3(Posicion sugerido_3) {
         this.sugerido_3 = sugerido_3;
     }
 
@@ -204,5 +216,60 @@ public class modulo_captacion {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+
+    public void Limpiar_Base (modulo_captacion BASE){
+       BASE.setCampo_capacidad_id(0);
+       BASE.setCampo_fisico_id(0);
+       BASE.setCampo_psico_id(0);
+       BASE.setCampo_social_id(0);
+       BASE.setCampo_tecnico_id(0);
+       BASE.setDepartamento(null);
+       BASE.setProvincia(null);
+       BASE.setDistrito(null);
+       BASE.setEstado(0);
+       BASE.setId_persona(0);
+       BASE.setId_usuario(0);
+       BASE.setSugerido_1(null);
+       BASE.setSugerido_2(null);
+       BASE.setSugerido_3(null);
+       BASE.setLateralidad(null);
+       BASE.setResultados_capacidad(null);
+       BASE.setResultados_Fisico(null);
+       BASE.setResultados_psico(null);
+       BASE.setResultados_social(null);
+       BASE.setResultados_tecnico(null);
+       BASE.setDatosPostulante(null);
+       BASE.setDescripcionUbigeo(null);
+
+    }
+
+    @Override
+    public String toString() {
+        return "modulo_captacion{" +
+                "id_persona=" + id_persona +
+                ", Departamento=" + Departamento +
+                ", Provincia=" + Provincia +
+                ", Distrito=" + Distrito +
+                ", DescripcionUbigeo='" + DescripcionUbigeo + '\'' +
+                ", id_usuario=" + id_usuario +
+                ", campo_fisico_id=" + campo_fisico_id +
+                ", campo_capacidad_id=" + campo_capacidad_id +
+                ", campo_social_id=" + campo_social_id +
+                ", campo_tecnico_id=" + campo_tecnico_id +
+                ", campo_psico_id=" + campo_psico_id +
+                ", sugerido_1=" + sugerido_1.getNombre_Posicione() +
+                ", sugerido_2=" + sugerido_2.getNombre_Posicione() +
+                ", sugerido_3=" + sugerido_3.getNombre_Posicione() +
+                ", lateralidad='" + lateralidad + '\'' +
+                ", estado=" + estado +
+                ", Resultados_Fisico=" + Resultados_Fisico +
+                ", Resultados_capacidad=" + Resultados_capacidad +
+                ", Resultados_social=" + Resultados_social +
+                ", Resultados_tecnico=" + Resultados_tecnico +
+                ", Resultados_psico=" + Resultados_psico +
+                ", DatosPostulante=" + DatosPostulante +
+                '}';
     }
 }

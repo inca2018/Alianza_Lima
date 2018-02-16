@@ -2,6 +2,7 @@ package com.example.jesusinca.alianza.Activities.Captacion;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -12,7 +13,9 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.jesusinca.alianza.Peticiones.RecuperarCodigoUsuario;
+import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
+import com.example.jesusinca.alianza.ActivityEntity.modulo_captacion;
+import com.example.jesusinca.alianza.Peticiones.RegistrarModuloCapta;
 import com.example.jesusinca.alianza.Peticiones.RegistrarPersonaRecuperarCodigo;
 import com.example.jesusinca.alianza.Peticiones.RegistrarResultadosDiagnostico;
 import com.example.jesusinca.alianza.R;
@@ -27,7 +30,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidarDiagnosticoActivity extends AppCompatActivity {
+import static com.example.jesusinca.alianza.ActivityEntity.modulo_captacion.BASE;
+
+public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
     TextView nombre,ubigeo,total;
     CardView verificar_resultados;
@@ -129,6 +134,7 @@ public class ValidarDiagnosticoActivity extends AppCompatActivity {
         String Apoderado=registroPersona.get(11).toUpperCase().trim();
         String TelefonoApoderado=registroPersona.get(12).toUpperCase().trim();
 
+
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Registro");
         progressDialog.setMessage("Enviando Información...");
@@ -144,6 +150,7 @@ public class ValidarDiagnosticoActivity extends AppCompatActivity {
 
                     if (success) {
                         id_persona=jsonResponse.getInt("id_persona");
+                        BASE.setId_persona(id_persona);
 
                         if(id_persona==0){
                             progressDialog.dismiss();
@@ -151,6 +158,8 @@ public class ValidarDiagnosticoActivity extends AppCompatActivity {
                         }else{
 
                             Registrar_Resultados(context,id_persona,ResultadosDiagnostico);
+
+                            debug("PASO REGISTRO DE PERSONA");
 
                         }
 
@@ -198,7 +207,7 @@ public class ValidarDiagnosticoActivity extends AppCompatActivity {
         String p3=String.valueOf(resultadosDiagnostico.get(23));
         String p4=String.valueOf(resultadosDiagnostico.get(24));
 
-        String id_persona=String.valueOf(id_personaa);
+        final String id_persona_reg=String.valueOf(id_personaa);
 
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -216,7 +225,17 @@ public class ValidarDiagnosticoActivity extends AppCompatActivity {
                         id_tecnico=jsonResponse.getInt("id_tecnico");
                         id_psico=jsonResponse.getInt("id_psico");
 
-                        Toast.makeText(context, "EXITOSOO", Toast.LENGTH_SHORT).show();
+                        BASE.setCampo_fisico_id(id_fisico);
+                        BASE.setCampo_capacidad_id(id_capacidad);
+                        BASE.setCampo_social_id(id_social);
+                        BASE.setCampo_tecnico_id(id_tecnico);
+                        BASE.setCampo_psico_id(id_psico);
+
+                        debug(BASE.toString());
+                        Registrar_Modulo_Diagnostico(BASE,context);
+
+                        debug("PASO REGISTRO DE DIAGNOSTICO");
+
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
@@ -229,18 +248,70 @@ public class ValidarDiagnosticoActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarResultadosDiagnostico xx = new RegistrarResultadosDiagnostico(f1,f2,f3,f4,f5,f6,f7,c1,c2,c3,c4,s1,s2,s3,s4,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,id_persona,responseListener);
+        RegistrarResultadosDiagnostico xx = new RegistrarResultadosDiagnostico(f1,f2,f3,f4,f5,f6,f7,c1,c2,c3,c4,s1,s2,s3,s4,t1,t2,t3,t4,t5,t6,p1,p2,p3,p4,id_persona_reg,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
-
-
-
-
     }
 
+    private void Registrar_Modulo_Diagnostico(final modulo_captacion base,final Context context) {
+
+
+        String id_persona=String.valueOf(base.getId_persona());
+        String id_departamento=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
+        String id_provincia=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
+        String id_distrito=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+        String id_user=String.valueOf(base.getId_usuario());
+        String id_fisico=String.valueOf(base.getCampo_fisico_id());
+        String id_capacidad=String.valueOf(base.getCampo_capacidad_id());
+        String id_social=String.valueOf(base.getCampo_social_id());
+        String id_tecnico=String.valueOf(base.getCampo_tecnico_id());
+        String id_psico=String.valueOf(base.getCampo_psico_id());
+        String id_sugerido1=String.valueOf(base.getSugerido_1().getId());
+        String id_sugerido2=String.valueOf(base.getSugerido_2().getId());
+        String id_sugerido3=String.valueOf(base.getSugerido_3().getId());
+        String lateralidad=base.getLateralidad();
+
+        debug("ENTRO REGISTRO DE MODULO");
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        progressDialog.dismiss();
+
+                        Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, PrincipalActivity.class);
+                        intent.putExtra("o","o1");
+                        ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
+                        Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+
+                        debug("PASO REGISTRO DE MODULO");
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en Recupera codigo de usuario :"+e);
+                }
+            }
+        };
+
+        RegistrarModuloCapta xx = new RegistrarModuloCapta(id_persona,id_departamento,id_provincia,id_distrito, id_user,id_fisico,id_capacidad,id_social,id_tecnico,id_psico,id_sugerido1,id_sugerido2,id_sugerido3,lateralidad,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+    }
 
     void debug(String mensaje){
         System.out.println(mensaje);
     }
+
+
+
 }

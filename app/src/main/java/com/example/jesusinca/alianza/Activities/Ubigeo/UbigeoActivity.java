@@ -283,6 +283,7 @@ public class UbigeoActivity extends AppCompatActivity {
                         Toast.makeText(context, "Ubicación actualizada correctamente!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
                         intent.putExtra("o","o1");
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         UbigeoActivity.this.startActivity(intent);
 
                     }else {
@@ -322,6 +323,7 @@ public class UbigeoActivity extends AppCompatActivity {
                         Toast.makeText(context, "Ubicación Registrada correctamente!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
                         intent.putExtra("o","o1");
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         UbigeoActivity.this.startActivity(intent);
 
                     }else {

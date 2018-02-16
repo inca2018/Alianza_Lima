@@ -22,6 +22,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Inicio.LoginActivity;
 import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
+import com.example.jesusinca.alianza.ActivityEntity.modulo_captacion;
 import com.example.jesusinca.alianza.Entity.Posicion;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 import com.example.jesusinca.alianza.Peticiones.RecuperarDepartamentos;
@@ -87,6 +88,7 @@ public class CaptacionActivity extends AppCompatActivity {
         Verificar_lateralidad();
         Verificar_Sugeridos();
     }
+
     private void debug(String mensaje){
         System.out.println(mensaje);
     }
@@ -99,6 +101,8 @@ public class CaptacionActivity extends AppCompatActivity {
                 for(int x=0;x<ListaPosiciones.size();x++){
                     if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
                          Diagnostico_Otros.OTROS.setSugerido1(ListaPosiciones.get(x));
+
+                         modulo_captacion.BASE.setSugerido_1(ListaPosiciones.get(x));
                     }
                 }
             }
@@ -116,6 +120,8 @@ public class CaptacionActivity extends AppCompatActivity {
                 for(int x=0;x<ListaPosiciones.size();x++){
                     if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
                         Diagnostico_Otros.OTROS.setSugerido2(ListaPosiciones.get(x));
+
+                        modulo_captacion.BASE.setSugerido_2(ListaPosiciones.get(x));
                     }
                 }
             }
@@ -133,6 +139,8 @@ public class CaptacionActivity extends AppCompatActivity {
                 for(int x=0;x<ListaPosiciones.size();x++){
                     if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
                         Diagnostico_Otros.OTROS.setSugerido3(ListaPosiciones.get(x));
+
+                        modulo_captacion.BASE.setSugerido_3(ListaPosiciones.get(x));
                     }
                 }
             }
@@ -150,10 +158,13 @@ public class CaptacionActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i==R.id.lateral_derecho){
                     Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD DERECHA");
+                    modulo_captacion.BASE.setLateralidad("LATERALIDAD DERECHA");
                 }else if(i==R.id.lateral_izquierdo){
                     Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD IZQUIERDA");
+                    modulo_captacion.BASE.setLateralidad("LATERALIDAD IZQUIERDA");
                 }else if(i==R.id.lateral_ambos){
                     Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD AMBAS PIERNAS");
+                    modulo_captacion.BASE.setLateralidad("LATERALIDAD AMBAS PIERNAS");
                 }
             }
         });

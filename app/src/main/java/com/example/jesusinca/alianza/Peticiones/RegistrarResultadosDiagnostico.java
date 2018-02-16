@@ -16,7 +16,7 @@ public class RegistrarResultadosDiagnostico extends StringRequest {
     public RegistrarResultadosDiagnostico(String f1,String f2,String f3,String f4,String f5,String f6,String f7,String c1,String c2,String c3,String c4,String s1,String s2,String s3,String s4,String t1,String t2,String t3,String t4,String t5 ,String t6 ,String p1,String p2,String p3,String p4,String id_persona, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
-        params.put("operacion","registrar_persona");
+        params.put("operacion","registrar_modulos");
         params.put("f1", f1);
         params.put("f2", f2);
         params.put("f3", f3);
