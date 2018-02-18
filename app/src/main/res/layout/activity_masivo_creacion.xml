@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.jesusinca.alianza.Activities.Captacion.MasivoCreacionActivity">
+    tools:context="com.example.jesusinca.alianza.Activities.Captacion.ListaMasivosActivity">
 
 
     <LinearLayout
@@ -62,14 +62,6 @@
 
         </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardElevation="5dp"
-            app:cardBackgroundColor="@color/blanco"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="8dp">
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/Recylcer_Masivos"
                 android:layout_width="match_parent"
@@ -77,7 +69,7 @@
 
             </android.support.v7.widget.RecyclerView>
 
-        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </LinearLayout>

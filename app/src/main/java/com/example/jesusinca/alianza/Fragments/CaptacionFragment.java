@@ -19,11 +19,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Captacion.CaptacionActivity;
-import com.example.jesusinca.alianza.Activities.Captacion.MasivoCreacionActivity;
+import com.example.jesusinca.alianza.Activities.Captacion.ListaMasivosActivity;
 import com.example.jesusinca.alianza.Activities.Ubigeo.UbigeoActivity;
-import com.example.jesusinca.alianza.ActivityEntity.modulo_captacion;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
-import com.example.jesusinca.alianza.Peticiones.RecuperarCodigoUsuario;
 import com.example.jesusinca.alianza.Peticiones.Validar_Ubigeo;
 import com.example.jesusinca.alianza.R;
 import com.example.jesusinca.alianza.Utils.GestionUbigeo;
@@ -105,7 +103,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
-                    Intent intent= new Intent(mContext,MasivoCreacionActivity.class);
+                    Intent intent= new Intent(mContext,ListaMasivosActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
@@ -117,7 +115,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
-                    Intent intent= new Intent(mContext,MasivoCreacionActivity.class);
+                    Intent intent= new Intent(mContext,ListaMasivosActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
@@ -130,7 +128,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
-                    Intent intent= new Intent(mContext,MasivoCreacionActivity.class);
+                    Intent intent= new Intent(mContext,ListaMasivosActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();

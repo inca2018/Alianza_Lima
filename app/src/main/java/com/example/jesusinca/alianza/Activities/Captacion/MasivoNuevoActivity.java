@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,14 +16,13 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Entity.Usuario;
 import com.example.jesusinca.alianza.Peticiones.RegistrarNuevoMasivo;
-import com.example.jesusinca.alianza.Peticiones.ValidarSesion;
 import com.example.jesusinca.alianza.R;
 import com.example.jesusinca.alianza.Utils.GestionUbigeo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NuevoMasivoActivity extends AppCompatActivity {
+public class MasivoNuevoActivity extends AppCompatActivity {
      EditText nombre_masivo;
      TextView ubigeo_masivo;
      Button guardar_masivo;
@@ -94,9 +92,9 @@ public class NuevoMasivoActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(context, "REGISTRO MASIVO GUARDADO", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(NuevoMasivoActivity.this, MasivoCreacionActivity.class);
+                        Intent intent = new Intent(MasivoNuevoActivity.this, ListaMasivosActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        NuevoMasivoActivity.this.startActivity(intent);
+                        MasivoNuevoActivity.this.startActivity(intent);
                         Limpiar();
                     }else {
                         progressDialog.dismiss();

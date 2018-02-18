@@ -8,20 +8,18 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.jesusinca.alianza.Activities.Inicio.LoginActivity;
-import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.Adapter.AdapterMasivo;
 import com.example.jesusinca.alianza.Entity.Masivo;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
+import com.example.jesusinca.alianza.Entity.Usuario;
 import com.example.jesusinca.alianza.Interface_Alianza.RecyclerViewOnItemClickListener;
-import com.example.jesusinca.alianza.Peticiones.RecuperarDepartamentos;
 import com.example.jesusinca.alianza.Peticiones.RecuperarMasivos;
 import com.example.jesusinca.alianza.R;
+import com.example.jesusinca.alianza.Utils.Recursos_Registro_Postulante_Masivo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MasivoCreacionActivity extends AppCompatActivity {
+public class ListaMasivosActivity extends AppCompatActivity {
     private RecyclerView recycler_masivo;
     private LinearLayoutManager linearLayout;
     private AdapterMasivo adapter;
@@ -42,8 +40,11 @@ public class MasivoCreacionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_masivo_creacion);
+        nuevo_masivo=findViewById(R.id.nuevo_masivo);
         context=this;
         recycler_masivo=findViewById(R.id.Recylcer_Masivos);
+
+
         lista_masivos=new ArrayList<>();
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
@@ -52,7 +53,12 @@ public class MasivoCreacionActivity extends AppCompatActivity {
         adapter = new AdapterMasivo(this, lista_masivos, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
                 Toast.makeText(context, "CLick id:"+lista_masivos.get(position).getCodigo(), Toast.LENGTH_SHORT).show();
+                Usuario.SESION_ACTUAL.setId_masivo(lista_masivos.get(position).getCodigo());
 
+                Intent intent=new Intent(ListaMasivosActivity.this,ListaPersonaMasivoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                ListaMasivosActivity.this.startActivity(intent);
             }
         });
 
@@ -61,12 +67,12 @@ public class MasivoCreacionActivity extends AppCompatActivity {
 
 
 
-        nuevo_masivo=findViewById(R.id.nuevo_masivo);
+
         nuevo_masivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MasivoCreacionActivity.this, NuevoMasivoActivity.class);
-                MasivoCreacionActivity.this.startActivity(intent);
+                Intent intent = new Intent(ListaMasivosActivity.this, MasivoNuevoActivity.class);
+                ListaMasivosActivity.this.startActivity(intent);
 
             }
         });
@@ -110,9 +116,10 @@ public class MasivoCreacionActivity extends AppCompatActivity {
 
                             lista_masivos.add(temp);
 
-                            adapter.notifyDataSetChanged();
+
                         }
 
+                        adapter.notifyDataSetChanged();
                         Toast.makeText(context, "LISTADO EXITOSO", Toast.LENGTH_SHORT).show();
                         System.out.println("LISTADO COMPLETO DE MASIVOS");
                     } else {

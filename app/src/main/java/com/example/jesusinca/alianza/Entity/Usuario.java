@@ -26,11 +26,31 @@ public class Usuario {
   String fecha_creacion;
   String fecha_conexion;
 
+  int id_masivo;
+  int id_persona;
+
 
     public static final Usuario SESION_ACTUAL=new Usuario();
 
+
     public Usuario(){
 
+    }
+
+    public int getId_masivo() {
+        return id_masivo;
+    }
+
+    public void setId_masivo(int id_masivo) {
+        this.id_masivo = id_masivo;
+    }
+
+    public int getId_persona() {
+        return id_persona;
+    }
+
+    public void setId_persona(int id_persona) {
+        this.id_persona = id_persona;
     }
 
     public int getId() {

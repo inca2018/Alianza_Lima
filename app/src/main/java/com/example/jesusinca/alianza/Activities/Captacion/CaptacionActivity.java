@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CaptacionActivity extends AppCompatActivity {
-    CardView card,card_aprobacion;
+    CardView card,card_aprobacion,card_saltar;
     ScrollView scroll;
     Spinner sugerido1,sugerido2,sugerido3;
     TextView ubicacion_texto;
@@ -56,6 +56,7 @@ public class CaptacionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_captacion);
         card=findViewById(R.id.card_totalizado);
         card_aprobacion=findViewById(R.id.card_aprobacion);
+        card_saltar=findViewById(R.id.card_saltar);
         scroll=findViewById(R.id.scroll_captacion);
         ubicacion_texto=findViewById(R.id.ubicacion_texto);
         sugerido1=findViewById(R.id.sugerido1);
@@ -85,6 +86,15 @@ public class CaptacionActivity extends AppCompatActivity {
 
             }
         });
+
+        card_saltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
+                CaptacionActivity.this.startActivity(intent);
+            }
+        });
+
         Verificar_lateralidad();
         Verificar_Sugeridos();
     }
@@ -318,12 +328,15 @@ public class CaptacionActivity extends AppCompatActivity {
         if(total_general>=45 && total_general<=49){
             card.setCardBackgroundColor(getResources().getColor(R.color.Orange));
             card_aprobacion.setVisibility(View.GONE);
+            card_saltar.setVisibility(View.VISIBLE);
         }else if(total_general>=50){
             card.setCardBackgroundColor(getResources().getColor(R.color.green));
             card_aprobacion.setVisibility(View.VISIBLE);
+            card_saltar.setVisibility(View.GONE);
         }else if(total_general<=44){
             card.setCardBackgroundColor(getResources().getColor(R.color.grey));
             card_aprobacion.setVisibility(View.GONE);
+            card_saltar.setVisibility(View.GONE);
         }
     }
     private void Generar_Animacion(final Captacion_Vista captacion_vista,final LinearLayout view_actual,LinearLayout Accion_Panel ) {

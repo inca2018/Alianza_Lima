@@ -3,9 +3,13 @@ package com.example.jesusinca.alianza.Adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jesusinca.alianza.Entity.Masivo;
 import com.example.jesusinca.alianza.Entity.Persona;
@@ -33,18 +37,14 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
         public TextView titulo_masivo;
-        public TextView ubigeo_masivo;
-        public TextView creador_masivo;
-        public TextView total_masivo;
+        public ImageView acciones;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             titulo_masivo=itemView.findViewById(R.id.card_masivo_titulo);
-            ubigeo_masivo=itemView.findViewById(R.id.card_masivo_ubigeo);
-            creador_masivo=itemView.findViewById(R.id.card_masivo_creador);
-            total_masivo=itemView.findViewById(R.id.card_masivo_cantidad_postulantes);
+            acciones=itemView.findViewById(R.id.masivo_personas_acciones);
         }
         @Override
         public void onClick(View v) {
@@ -60,9 +60,33 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+            holder.titulo_masivo.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
+            holder.acciones.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final PopupMenu popupMenu=new PopupMenu(context,holder.acciones);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_item_masivo,popupMenu.getMenu());
 
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            if(item.getTitle().toString().equalsIgnoreCase("Evaluar")){
+                                Toast.makeText(context, "OPCION1", Toast.LENGTH_SHORT).show();
+                            }else if(item.getTitle().toString().equalsIgnoreCase("Resultados")){
+                                Toast.makeText(context, "OPCION2", Toast.LENGTH_SHORT).show();
+                            }else if(item.getTitle().toString().equalsIgnoreCase("Eliminar")){
+                                Toast.makeText(context, "OPCION3", Toast.LENGTH_SHORT).show();
+                            }
+                            return true;
+                        }
+                    });
+
+                    popupMenu.show();
+                }
+            });
 
     }
 

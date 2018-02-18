@@ -52,7 +52,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_principal);
 
         captacion=(Menu)findViewById(R.id.menu_modulo_captacion);
-        estadistico=(Menu)findViewById(R.id.menu_modulo_estadistico);
+        estadistico=(Menu)findViewById(R.id.menu_modulo_estadisticos);
         //mantenimiento=(Menu)findViewById(R.id.menu_modulo_mantenimiento);
         mostrar_vistas() ;
         Toolbar_iniz();
@@ -130,25 +130,16 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(0);
             toolbar.setTitle("Inicio");
         }
-        else if (id == R.id.nav_3) {
+        else if (id == R.id.nav_2) {
             displayView(1);
-            toolbar.setTitle("Postulantes");
+            toolbar.setTitle("Captación");
         }
-        else if (id == R.id.nav_4) {
+        else if (id == R.id.nav_3) {
             displayView(2);
-            toolbar.setTitle("Barrio Intimo");
+            toolbar.setTitle("Información de Captación");
 
         }
-        else if (id == R.id.nav_seg_pos) {
-            displayView(11);
-            toolbar.setTitle("Seguimiento");
 
-        }
-        else if (id == R.id.nav_5) {
-            displayView(3);
-            toolbar.setTitle("Estadistico");
-
-        }
 
        /* else if (id == R.id.mant_usuario) {
             displayView(5);
@@ -158,10 +149,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(6);
             toolbar.setTitle("Perfiles");
         }*/
-        else if (id == R.id.nav_reporte_cap) {
-            displayView(23);
-            toolbar.setTitle("Reporte Captación");
-        }
+
        /* else if (id == R.id.mant_categorias) {
             displayView(7);
             toolbar.setTitle("Categorias");

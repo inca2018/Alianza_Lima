@@ -133,6 +133,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         String Correo=registroPersona.get(10).toUpperCase().trim();
         String Apoderado=registroPersona.get(11).toUpperCase().trim();
         String TelefonoApoderado=registroPersona.get(12).toUpperCase().trim();
+        String Estado=String.valueOf(1);
 
 
         progressDialog = new ProgressDialog(context);
@@ -175,7 +176,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,responseListener);
+        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
