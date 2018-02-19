@@ -1,6 +1,7 @@
 package com.example.jesusinca.alianza.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -14,6 +15,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Captacion.CaptacionActivity;
 import com.example.jesusinca.alianza.Activities.Captacion.ListaMasivosActivity;
 import com.example.jesusinca.alianza.Activities.Captacion.MasivoNuevoActivity;
@@ -22,8 +25,15 @@ import com.example.jesusinca.alianza.Entity.Masivo;
 import com.example.jesusinca.alianza.Entity.Persona;
 import com.example.jesusinca.alianza.Entity.Usuario;
 import com.example.jesusinca.alianza.Interface_Alianza.RecyclerViewOnItemClickListener;
+import com.example.jesusinca.alianza.Peticiones.RecuperarResultadosDiagnostico;
+import com.example.jesusinca.alianza.Peticiones.Recuperar_Sugerido;
 import com.example.jesusinca.alianza.R;
+import com.example.jesusinca.alianza.Utils.ResultadosDiagnostico;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +43,7 @@ import java.util.List;
 public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPersona.ViewHolder>{
     public Context context;
     private List<Persona> my_Data;
+    ProgressDialog progressDialog;
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
 
     public AdapterMasivoPersona(Context context, List<Persona> my_Data, RecyclerViewOnItemClickListener
@@ -96,7 +107,7 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
                                 int estado=my_Data.get(position).getEstado_capta();
                                 int disponibilidad=my_Data.get(position).getDisponible();
                                 if(disponibilidad==1){
-                                    if(estado==1){
+                                    if(estado==2){
                                         Toast.makeText(context, "Postulante ya tiene una Evaluaciòn Realizada!", Toast.LENGTH_SHORT).show();
                                     }else{
                                         Persona.PERSONA_TEMP.setId(my_Data.get(position).getId());
@@ -104,8 +115,7 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
                                         Persona.PERSONA_TEMP.setApellidos_Persona(my_Data.get(position).getApellidos_Persona());
 
                                         Intent intent = new Intent(context, CaptacionActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         context.startActivity(intent);
 
                                     }
@@ -116,12 +126,14 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
 
                             }else if(item.getTitle().toString().equalsIgnoreCase("Resultados")){
                                 int estado=my_Data.get(position).getEstado_capta();
-                                if(estado==1){
-                                     Intent intent=new Intent(context, MasivoResultadosActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                     context.startActivity(intent);
-                                }else if(estado==2){
+                                if(estado==2){
+
+                                    Persona.PERSONA_TEMP.setId(my_Data.get(position).getId());
+                                    Persona.PERSONA_TEMP.setNombre_Persona(my_Data.get(position).getNombre_Persona());
+                                    Persona.PERSONA_TEMP.setApellidos_Persona(my_Data.get(position).getApellidos_Persona());
+                                    Recuperar_Resultados(Persona.PERSONA_TEMP.getId(),context);
+
+                                }else if(estado==1){
                                     Toast.makeText(context, "Postulante no tiene Evaluaciòn Disponible", Toast.LENGTH_SHORT).show();
                                 }
                             }else if(item.getTitle().toString().equalsIgnoreCase("Eliminar")){
@@ -141,4 +153,169 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
     public int getItemCount() {
         return my_Data.size();
     }
+
+
+    private void Recuperar_Resultados(final int id,final Context context) {
+        String id_persona=String.valueOf(id);
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Resultados");
+        progressDialog.setMessage("Recuperando Resultados...");
+        progressDialog.show();
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        List<Integer> RespFisico=new ArrayList<>();
+                        RespFisico.add(jsonResponse.getInt("f1"));
+                        RespFisico.add(jsonResponse.getInt("f2"));
+                        RespFisico.add(jsonResponse.getInt("f3"));
+                        RespFisico.add(jsonResponse.getInt("f4"));
+                        RespFisico.add(jsonResponse.getInt("f5"));
+                        RespFisico.add(jsonResponse.getInt("f6"));
+                        RespFisico.add(jsonResponse.getInt("f7"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setFISICO(RespFisico);
+
+                        List<Integer> RespCapacidad=new ArrayList<>();
+                        RespCapacidad.add(jsonResponse.getInt("c1"));
+                        RespCapacidad.add(jsonResponse.getInt("c2"));
+                        RespCapacidad.add(jsonResponse.getInt("c3"));
+                        RespCapacidad.add(jsonResponse.getInt("c4"));
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setCAPACIDAD(RespCapacidad);
+                        List<Integer> RespSocial=new ArrayList<>();
+                        RespSocial.add(jsonResponse.getInt("s1"));
+                        RespSocial.add(jsonResponse.getInt("s2"));
+                        RespSocial.add(jsonResponse.getInt("s3"));
+                        RespSocial.add(jsonResponse.getInt("s4"));
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setSOCIAL(RespSocial);
+                        List<Integer> RespTecnico=new ArrayList<>();
+                        RespTecnico.add(jsonResponse.getInt("t1"));
+                        RespTecnico.add(jsonResponse.getInt("t2"));
+                        RespTecnico.add(jsonResponse.getInt("t3"));
+                        RespTecnico.add(jsonResponse.getInt("t4"));
+                        RespTecnico.add(jsonResponse.getInt("t5"));
+                        RespTecnico.add(jsonResponse.getInt("t6"));
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setTECNICO(RespTecnico);
+
+                        List<Integer> RespPsico=new ArrayList<>();
+                        RespPsico.add(jsonResponse.getInt("p1"));
+                        RespPsico.add(jsonResponse.getInt("p2"));
+                        RespPsico.add(jsonResponse.getInt("p3"));
+                        RespPsico.add(jsonResponse.getInt("p4"));
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setPSICO(RespPsico);
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setFecha_registro(jsonResponse.getString("fecha_registro"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setSugerido1(jsonResponse.getInt("sugerido1"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setSugerido2(jsonResponse.getInt("sugerido2"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setSugerid3(jsonResponse.getInt("sugerido3"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setLaterlaidad(jsonResponse.getString("lateralidad"));
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setTotal_fisico(jsonResponse.getInt("total_fisico"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setTotal_capacidad(jsonResponse.getInt("total_capacidad"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setTotal_social(jsonResponse.getInt("total_social"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setTotal_tecnico(jsonResponse.getInt("total_tecnico"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setTotal_psico(jsonResponse.getInt("totalpsico"));
+                        ResultadosDiagnostico.RESULTADO_TEMP.setNombre_Scout(jsonResponse.getString("scout").toUpperCase());
+
+                        Recuperar_Posiciones(ResultadosDiagnostico.RESULTADO_TEMP.getSugerido1(),ResultadosDiagnostico.RESULTADO_TEMP.getSugerido2(),ResultadosDiagnostico.RESULTADO_TEMP.getSugerid3(),context);
+
+
+
+
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "No se encontraron Resultados Diagnostico", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar Resultados :"+e);
+                }
+            }
+        };
+
+        RecuperarResultadosDiagnostico xx = new RecuperarResultadosDiagnostico(id_persona,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
+    private void Recuperar_Posiciones(final int sug1,final int sug2,final int sug3,final Context context) {
+
+        String sugerido1=String.valueOf(sug1);
+        String sugerido2=String.valueOf(sug2);
+        String sugerido3=String.valueOf(sug3);
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        List<String> Sugerido=new ArrayList<>();
+                        String sug1=jsonResponse.getString("sugerido1");
+                        int estado1=jsonResponse.getInt("estado1");
+                        String sug2=jsonResponse.getString("sugerido2");
+                        int estado2=jsonResponse.getInt("estado2");
+                        String sug3=jsonResponse.getString("sugerido3");
+                        int estado3=jsonResponse.getInt("estado3");
+
+                        if(estado1==2){
+                            Sugerido.add(sug1);
+                        }else{
+
+                        }
+                        if(estado2==2){
+                            Sugerido.add(sug2);
+                        }else{
+
+                        }
+                        if(estado3==2){
+                            Sugerido.add(sug3);
+                        }else{
+
+                        }
+
+                        ResultadosDiagnostico.RESULTADO_TEMP.setSugeridos(Sugerido);
+
+
+
+                        Intent intent=new Intent(context, MasivoResultadosActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                        progressDialog.dismiss();
+
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "No se encontraron Resultados Posiciones", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar Resultados :"+e);
+                }
+            }
+        };
+
+        Recuperar_Sugerido xx = new Recuperar_Sugerido(sugerido1,sugerido2,sugerido3,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+
+    }
+
+
 }

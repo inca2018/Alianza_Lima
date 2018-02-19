@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.Entity.Usuario;
 import com.example.jesusinca.alianza.Peticiones.AgregarPersonaEnMasivo;
 import com.example.jesusinca.alianza.Peticiones.RegistrarPersonaRecuperarCodigo;
@@ -99,7 +100,7 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
         String Apoderado=resultadosRegistro.get(11).toUpperCase().trim();
         String TelefonoApoderado=resultadosRegistro.get(12).toUpperCase().trim();
         String Estado=String.valueOf(2);
-        String estado_capta=String.valueOf(2);
+        String estado_capta=String.valueOf(1);
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Registro");
@@ -283,5 +284,15 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
         System.out.println(mensaje);
     }
 
+
+    public void onBackPressed() {
+
+        Intent intent = new Intent(PersonaNuevoMasivoActivity.this,ListaPersonaMasivoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PersonaNuevoMasivoActivity.this.startActivity(intent);
+        finish();
+
+
+    }
 
 }

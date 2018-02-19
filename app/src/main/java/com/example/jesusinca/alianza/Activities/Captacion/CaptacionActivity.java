@@ -478,8 +478,9 @@ public class CaptacionActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Desactivar_Persona(Persona.PERSONA_TEMP.getId());
                                     Intent intent = new Intent(CaptacionActivity.this,ListaPersonaMasivoActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     CaptacionActivity.this.startActivity(intent);
+                                    finish();
                                 }
                             })
                     .setNegativeButton("NO",
@@ -492,6 +493,12 @@ public class CaptacionActivity extends AppCompatActivity {
 
             builder.show();
         }else{
+
+            Intent intent = new Intent(CaptacionActivity.this,PrincipalActivity.class);
+            intent.putExtra("o","o1");
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            CaptacionActivity.this.startActivity(intent);
+            finish();
 
 
 

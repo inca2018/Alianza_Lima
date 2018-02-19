@@ -1,6 +1,8 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +14,10 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.Adapter.AdapterMasivo;
 import com.example.jesusinca.alianza.Entity.Masivo;
+import com.example.jesusinca.alianza.Entity.Persona;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 import com.example.jesusinca.alianza.Entity.Usuario;
 import com.example.jesusinca.alianza.Interface_Alianza.RecyclerViewOnItemClickListener;
@@ -34,6 +38,7 @@ public class ListaMasivosActivity extends AppCompatActivity {
     private AdapterMasivo adapter;
     private List<Masivo> lista_masivos;
     Context context;
+    ProgressDialog progressDialog;
 
     CardView nuevo_masivo;
     @Override
@@ -56,8 +61,7 @@ public class ListaMasivosActivity extends AppCompatActivity {
                 Usuario.SESION_ACTUAL.setId_masivo(lista_masivos.get(position).getCodigo());
 
                 Intent intent=new Intent(ListaMasivosActivity.this,ListaPersonaMasivoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 ListaMasivosActivity.this.startActivity(intent);
             }
         });
@@ -72,8 +76,7 @@ public class ListaMasivosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListaMasivosActivity.this, MasivoNuevoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 ListaMasivosActivity.this.startActivity(intent);
 
             }
@@ -82,6 +85,11 @@ public class ListaMasivosActivity extends AppCompatActivity {
 
     private void Listar_Masivos(final Context context) {
 
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Captación Masiva:");
+        progressDialog.setMessage("Listando...");
+        progressDialog.show();
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -122,11 +130,12 @@ public class ListaMasivosActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-                        Toast.makeText(context, "LISTADO EXITOSO", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+
                         System.out.println("LISTADO COMPLETO DE MASIVOS");
                     } else {
-
-                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -139,6 +148,18 @@ public class ListaMasivosActivity extends AppCompatActivity {
         RecuperarMasivos xx = new RecuperarMasivos(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+
+
+    }
+
+
+    public void onBackPressed() {
+
+        Intent intent = new Intent(ListaMasivosActivity.this,PrincipalActivity.class);
+        intent.putExtra("o","o1");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        ListaMasivosActivity.this.startActivity(intent);
+        finish();
 
 
     }

@@ -1,5 +1,7 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.Adapter.AdapterMasivo;
 import com.example.jesusinca.alianza.Adapter.AdapterMasivoPersona;
 import com.example.jesusinca.alianza.Entity.Masivo;
@@ -38,12 +41,13 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
     private AdapterMasivoPersona adapter;
     private List<Persona> lista_personas;
     Context context;
+    ProgressDialog progressDialog;
 
     CardView nuevo_masivo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context=getApplicationContext();
+        context=this;
         setContentView(R.layout.activity_masivo_lista_persona);
         recycler_masivo_postulante=findViewById(R.id.Recylcer_Masivos_postulante);
         nuevo_masivo=findViewById(R.id.nuevo_masivo_postulante);
@@ -68,16 +72,20 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaPersonaMasivoActivity.this, PersonaNuevoMasivoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 ListaPersonaMasivoActivity.this.startActivity(intent);
-
                 finish();
             }
         });
     }
 
     private void listar_persona(final Context context) {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Postulantes:");
+        progressDialog.setMessage("Listando...");
+        progressDialog.show();
+
         String id_masivo=String.valueOf(Usuario.SESION_ACTUAL.getId_masivo());
         System.out.println("Id_ masivo :"+id_masivo);
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
@@ -105,12 +113,12 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
+                        progressDialog.dismiss();
 
-                        Toast.makeText(context, "LISTADO EXITOSO", Toast.LENGTH_SHORT).show();
                         System.out.println("LISTADO COMPLETO DE MASIVOS");
                     } else {
-
-                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -122,6 +130,16 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
         RecuperarPersonas xx = new RecuperarPersonas(id_masivo,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+    }
+
+    public void onBackPressed() {
+
+        Intent intent = new Intent(ListaPersonaMasivoActivity.this,ListaMasivosActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        ListaPersonaMasivoActivity.this.startActivity(intent);
+        finish();
+
+
     }
 
 
