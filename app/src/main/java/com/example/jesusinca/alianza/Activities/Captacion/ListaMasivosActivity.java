@@ -56,8 +56,8 @@ public class ListaMasivosActivity extends AppCompatActivity {
                 Usuario.SESION_ACTUAL.setId_masivo(lista_masivos.get(position).getCodigo());
 
                 Intent intent=new Intent(ListaMasivosActivity.this,ListaPersonaMasivoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 ListaMasivosActivity.this.startActivity(intent);
             }
         });
@@ -72,6 +72,8 @@ public class ListaMasivosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListaMasivosActivity.this, MasivoNuevoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 ListaMasivosActivity.this.startActivity(intent);
 
             }

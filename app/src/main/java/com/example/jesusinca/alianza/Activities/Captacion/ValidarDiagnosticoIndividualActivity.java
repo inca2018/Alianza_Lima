@@ -15,6 +15,10 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.ActivityEntity.modulo_captacion;
+import com.example.jesusinca.alianza.Entity.Persona;
+import com.example.jesusinca.alianza.Entity.Usuario;
+import com.example.jesusinca.alianza.Peticiones.ActivarEvaPersona;
+import com.example.jesusinca.alianza.Peticiones.DesactivarPersona;
 import com.example.jesusinca.alianza.Peticiones.RegistrarModuloCapta;
 import com.example.jesusinca.alianza.Peticiones.RegistrarPersonaRecuperarCodigo;
 import com.example.jesusinca.alianza.Peticiones.RegistrarResultadosDiagnostico;
@@ -40,6 +44,9 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
     int id_persona,id_fisico,id_social,id_capacidad,id_psico,id_tecnico;
     ProgressDialog progressDialog;
+    String estado_capta;
+
+    String id_per,id_Dep,id_Prov,id_Dis;
 
     List<String> RegistroPersona;
     List<Integer> ResultadosDiagnostico;
@@ -54,11 +61,29 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         RegistroPersona=new ArrayList<>();
         ResultadosDiagnostico=new ArrayList<>();
 
-        if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
-            ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion()));
-        }else {
-            ubigeo.setText("Ubigeo no encontrado!");
+        if(Persona.PERSONA_TEMP.getId()!=0){
+            if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
+                ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion()));
+            }else {
+                ubigeo.setText("Ubigeo no encontrado!");
+            }
+
+            nombre.setText(Persona.PERSONA_TEMP.getNombre_Persona()+" "+Persona.PERSONA_TEMP.getApellidos_Persona());
+
+        }else{
+            if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+                ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion()));
+            }else {
+                ubigeo.setText("Ubigeo no encontrado!");
+            }
+
+            if(Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor().length()!=0 && Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor().length()!=0){
+                String nombress=Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor()+" "+Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor();
+                nombre.setText(nombress.toUpperCase());
+            }
+
         }
+
 
         if(Diagnostico_Otros.OTROS.getTotal_puntaje()!=0){
             total.setText(Diagnostico_Otros.OTROS.getTotal_puntaje()+" Puntos");
@@ -66,22 +91,13 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             total.setText("Total no encontrado");
         }
 
-        if(Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor().length()!=0 && Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor().length()!=0){
-            String nombress=Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor()+" "+Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor();
-            nombre.setText(nombress.toUpperCase());
-        }
-
 
 
 
         verificar_resultados=findViewById(R.id.confirmacion_resultados);
-
-
         verificar_resultados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Armar_Resultados();
 
             }
@@ -114,8 +130,12 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_PSICO.get(i).getResultado());
         }
 
+        if(Persona.PERSONA_TEMP.getId()!=0){
+            Registrar_Resultados(context,Persona.PERSONA_TEMP.getId(),ResultadosDiagnostico);
+        }else{
+            Registrar_Persona(RegistroPersona,context);
+        }
 
-        Registrar_Persona(RegistroPersona,context);
 
     }
 
@@ -134,6 +154,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         String Apoderado=registroPersona.get(11).toUpperCase().trim();
         String TelefonoApoderado=registroPersona.get(12).toUpperCase().trim();
         String Estado=String.valueOf(1);
+        String Estado_Capta=String.valueOf(1);
 
 
         progressDialog = new ProgressDialog(context);
@@ -176,7 +197,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,responseListener);
+        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,Estado_Capta,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
@@ -257,11 +278,25 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
     private void Registrar_Modulo_Diagnostico(final modulo_captacion base,final Context context) {
 
+        if(Persona.PERSONA_TEMP.getId()!=0){
+            id_per=String.valueOf(Persona.PERSONA_TEMP.getId());
+            id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDepartamento().getCodigo());
+            id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getProvincia().getCodigo());
+            id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDistrito().getCodigo());
 
-        String id_persona=String.valueOf(base.getId_persona());
-        String id_departamento=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
-        String id_provincia=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
-        String id_distrito=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setTitle("Registro");
+            progressDialog.setMessage("Enviando Información...");
+
+            Desactivar_Persona(Integer.parseInt(id_per));
+            Actualizar_Estado_Capta(Integer.parseInt(id_per));
+        }else{
+            id_per=String.valueOf(base.getId_persona());
+            id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
+            id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
+            id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+        }
+
         String id_user=String.valueOf(base.getId_usuario());
         String id_fisico=String.valueOf(base.getCampo_fisico_id());
         String id_capacidad=String.valueOf(base.getCampo_capacidad_id());
@@ -303,9 +338,39 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarModuloCapta xx = new RegistrarModuloCapta(id_persona,id_departamento,id_provincia,id_distrito, id_user,id_fisico,id_capacidad,id_social,id_tecnico,id_psico,id_sugerido1,id_sugerido2,id_sugerido3,lateralidad,responseListener);
+        RegistrarModuloCapta xx = new RegistrarModuloCapta(id_per,id_Dep,id_Prov,id_Dis, id_user,id_fisico,id_capacidad,id_social,id_tecnico,id_psico,id_sugerido1,id_sugerido2,id_sugerido3,lateralidad,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+
+    }
+
+    private void Actualizar_Estado_Capta(int i) {
+        String id_persona=String.valueOf(i);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Persona CAPTA ACTIVAR");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActivarEvaPersona validarSesion = new ActivarEvaPersona(id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(validarSesion);
+
 
     }
 
@@ -313,6 +378,34 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         System.out.println(mensaje);
     }
 
+    private void Desactivar_Persona(int id) {
+        String id_persona=String.valueOf(id);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Persona Desactivada");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        DesactivarPersona validarSesion = new DesactivarPersona(id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(validarSesion);
+
+    }
 
 
 }

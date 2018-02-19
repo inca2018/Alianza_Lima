@@ -68,8 +68,11 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaPersonaMasivoActivity.this, PersonaNuevoMasivoActivity.class);
-
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 ListaPersonaMasivoActivity.this.startActivity(intent);
+
+                finish();
             }
         });
     }
@@ -90,9 +93,13 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
                         for(int i=0;i<masivo.length();i++){
                             JSONObject objeto= masivo.getJSONObject(i);
                             Persona temp=new Persona();
+                            temp.setId(objeto.getInt("ID"));
                             temp.setNombre_Persona(objeto.getString("NOMBRES"));
                             temp.setApellidos_Persona(objeto.getString("APELLIDOS"));
                             temp.setEstado(objeto.getInt("ESTADO"));
+                            temp.setEstado_capta(objeto.getInt("ESTADO_DIAGNOSTICO"));
+                            temp.setDisponible(objeto.getInt("DISPONIBLE"));
+
                             lista_personas.add(temp);
 
                         }

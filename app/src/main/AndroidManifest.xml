@@ -32,7 +32,8 @@
         <activity android:name=".Activities.Captacion.ListaMasivosActivity" />
         <activity android:name=".Activities.Captacion.MasivoNuevoActivity" />
         <activity android:name=".Activities.Captacion.ListaPersonaMasivoActivity" />
-        <activity android:name=".Activities.Captacion.PersonaNuevoMasivoActivity"></activity>
+        <activity android:name=".Activities.Captacion.PersonaNuevoMasivoActivity" />
+        <activity android:name=".Activities.Captacion.MasivoResultadosActivity"></activity>
     </application>
 
 </manifest>

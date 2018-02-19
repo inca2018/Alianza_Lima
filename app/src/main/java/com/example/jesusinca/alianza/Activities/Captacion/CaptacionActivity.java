@@ -1,6 +1,7 @@
 package com.example.jesusinca.alianza.Activities.Captacion;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,14 +20,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Inicio.LoginActivity;
 import com.example.jesusinca.alianza.Activities.Inicio.PrincipalActivity;
 import com.example.jesusinca.alianza.ActivityEntity.modulo_captacion;
+import com.example.jesusinca.alianza.Entity.Persona;
 import com.example.jesusinca.alianza.Entity.Posicion;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
+import com.example.jesusinca.alianza.Entity.Usuario;
+import com.example.jesusinca.alianza.Peticiones.ActivarPersona;
+import com.example.jesusinca.alianza.Peticiones.DesactivarPersona;
 import com.example.jesusinca.alianza.Peticiones.RecuperarDepartamentos;
 import com.example.jesusinca.alianza.Peticiones.RecuperarPosiciones;
+import com.example.jesusinca.alianza.Peticiones.ValidarSesion;
 import com.example.jesusinca.alianza.R;
 import com.example.jesusinca.alianza.Utils.Captacion_Vista;
 import com.example.jesusinca.alianza.Utils.Captacion_funcional;
@@ -50,6 +57,7 @@ public class CaptacionActivity extends AppCompatActivity {
     List<Posicion> ListaPosiciones;
     String[] ArregloString_Posiciones;
     RadioGroup opciones_lateralidad;
+    TextView texto_continuar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,16 +71,30 @@ public class CaptacionActivity extends AppCompatActivity {
         sugerido2=findViewById(R.id.sugerido2);
         sugerido3=findViewById(R.id.sugerido3);
         opciones_lateralidad=findViewById(R.id.opciones_lateralidad);
+        texto_continuar=findViewById(R.id.texto_continuar);
+
         ListaPosiciones=new ArrayList<>();
         context=this;
 
         Listar_Posiciones(context);
+        System.out.println("ID_PERSONA RECIBIDO: "+Persona.PERSONA_TEMP.getId());
 
-        if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
-            ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+        if(Persona.PERSONA_TEMP.getId()!=0){
+            Activar_Persona(Persona.PERSONA_TEMP.getId());
+            if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
+                ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion());
+            }else{
+                ubicacion_texto.setText("Ubicación no disponible");
+            }
         }else{
-            ubicacion_texto.setText("Ubicación no disponible");
+            if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+                ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+            }else{
+                ubicacion_texto.setText("Ubicación no disponible");
+            }
         }
+
+
 
         // Animaciones de Vistas Captacion
          Creacion_Animaciones();
@@ -81,8 +103,15 @@ public class CaptacionActivity extends AppCompatActivity {
         card_aprobacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
-                CaptacionActivity.this.startActivity(intent);
+
+                if(Persona.PERSONA_TEMP.getId()!=0){
+                    Intent intent = new Intent(CaptacionActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                    CaptacionActivity.this.startActivity(intent);
+                }else{
+                    Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
+                    CaptacionActivity.this.startActivity(intent);
+                }
+
 
             }
         });
@@ -90,15 +119,76 @@ public class CaptacionActivity extends AppCompatActivity {
         card_saltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
-                CaptacionActivity.this.startActivity(intent);
+                if(Persona.PERSONA_TEMP.getId()!=0){
+                    Intent intent = new Intent(CaptacionActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                    CaptacionActivity.this.startActivity(intent);
+                }else{
+                    Intent intent = new Intent(CaptacionActivity.this, RegistroPostulantesActivity.class);
+                    CaptacionActivity.this.startActivity(intent);
+                }
+
             }
         });
 
         Verificar_lateralidad();
         Verificar_Sugeridos();
     }
+    private void Activar_Persona(int id) {
+       String id_persona=String.valueOf(id);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                            debug("Persona Activada");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActivarPersona validarSesion = new ActivarPersona(id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(validarSesion);
+
+    }
+    private void Desactivar_Persona(int id) {
+        String id_persona=String.valueOf(id);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Persona Desactivada");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        DesactivarPersona validarSesion = new DesactivarPersona(id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(validarSesion);
+
+    }
     private void debug(String mensaje){
         System.out.println(mensaje);
     }
@@ -372,6 +462,43 @@ public class CaptacionActivity extends AppCompatActivity {
                Recursos_Diagnostico.LISTA_VISTAS.get(i).getView().setVisibility(View.GONE);
             }
         }
+    }
+
+
+    public void onBackPressed() {
+
+        if(Persona.PERSONA_TEMP.getId()!=0){
+
+            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+            builder.setTitle("Captacion")
+                    .setMessage("¿Desea salir de la Evaluaciòn?")
+                    .setPositiveButton("SI",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Desactivar_Persona(Persona.PERSONA_TEMP.getId());
+                                    Intent intent = new Intent(CaptacionActivity.this,ListaPersonaMasivoActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    CaptacionActivity.this.startActivity(intent);
+                                }
+                            })
+                    .setNegativeButton("NO",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+            builder.show();
+        }else{
+
+
+
+
+        }
+
+
     }
 
 }

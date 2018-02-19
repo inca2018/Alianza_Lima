@@ -30,7 +30,10 @@ public class Persona {
     String Fecha_Ultima_modificacion;
     int Num_Camiseta;
     modulo_captacion Informacion_captacion;
+    int estado_capta;
+    int disponible;
 
+    public static final Persona PERSONA_TEMP=new Persona();
 
     public Persona(){
 
@@ -41,8 +44,25 @@ public class Persona {
         return Informacion_captacion;
     }
 
+
+    public int getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(int disponible) {
+        this.disponible = disponible;
+    }
+
     public void setInformacion_captacion(modulo_captacion informacion_captacion) {
         Informacion_captacion = informacion_captacion;
+    }
+
+    public int getEstado_capta() {
+        return estado_capta;
+    }
+
+    public void setEstado_capta(int estado_capta) {
+        this.estado_capta = estado_capta;
     }
 
     public int getId() {

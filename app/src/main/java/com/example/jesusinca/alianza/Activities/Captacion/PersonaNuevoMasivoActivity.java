@@ -99,6 +99,7 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
         String Apoderado=resultadosRegistro.get(11).toUpperCase().trim();
         String TelefonoApoderado=resultadosRegistro.get(12).toUpperCase().trim();
         String Estado=String.valueOf(2);
+        String estado_capta=String.valueOf(2);
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Registro");
@@ -142,7 +143,7 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,responseListener);
+        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,estado_capta,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
