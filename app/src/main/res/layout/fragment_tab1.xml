@@ -22,18 +22,20 @@
             <TextView
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/titulo1"
+                android:layout_height="match_parent"
                 android:text="Scout:"
                 android:layout_weight="1"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tab1_nombre_scout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/titulo2"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textStyle="italic"/>
 
 
         </LinearLayout>
@@ -44,18 +46,20 @@
             android:layout_weight="1">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/titulo1"
+                android:layout_height="match_parent"
                 android:text="Posiciones Seguridas:"
                 android:layout_weight="1"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tab1_posiciones_sugeridas"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/titulo2"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textStyle="italic"/>
 
 
         </LinearLayout>
@@ -66,20 +70,22 @@
             android:layout_weight="1">
 
             <TextView
-                style="@style/titulo1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Lateralidad:"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/tab1_lateralidad"
-                style="@style/titulo2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:gravity="center"/>
 
 
         </LinearLayout>

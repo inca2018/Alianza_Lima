@@ -24,4 +24,8 @@
 
 
 
+    <dimen name="altura">310dp</dimen>
+
+
+
 </resources>

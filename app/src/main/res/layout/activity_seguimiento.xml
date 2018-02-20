@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jesusinca.alianza.Activities.Captacion.SeguimientoActivity">
+
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardElevation="5dp"
+               app:cardCornerRadius="10dp"
+               app:cardBackgroundColor="@color/blue"
+               android:layout_weight="1"
+               android:layout_margin="8dp">
+
+
+               <Button
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@color/blanco"
+                   android:text="Diagnostico"
+                   android:background="@android:color/transparent"/>
+
+           </android.support.v7.widget.CardView>
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardElevation="5dp"
+               app:cardCornerRadius="10dp"
+               app:cardBackgroundColor="@color/deep_naranja400"
+               android:layout_weight="1"
+               android:layout_margin="8dp">
+
+
+               <Button
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@color/blanco"
+                   android:text="Datos"
+                   android:background="@android:color/transparent"/>
+
+           </android.support.v7.widget.CardView>
+
+
+           <android.support.v7.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardElevation="5dp"
+               app:cardCornerRadius="10dp"
+               app:cardBackgroundColor="@color/verde"
+               android:layout_weight="1"
+               android:layout_margin="8dp">
+
+
+               <Button
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textColor="@color/blanco"
+                   android:text="GUARDAR"
+                   android:background="@android:color/transparent"/>
+
+           </android.support.v7.widget.CardView>
+
+
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_campo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/blue"
+                android:layout_margin="10dp"
+                >
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/ev2_campo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+</LinearLayout>

@@ -44,7 +44,8 @@ public class Tab6 extends Fragment {
 
         for(int i = 0; i< Recurso_Resultados.OPCION_PSICO.size(); i++){
             TextView temp=v.findViewById(Recurso_Resultados.OPCION_PSICO.get(i).getText_Pregunta());
-            temp.setText(i+".- "+Recurso_Resultados.OPCION_PSICO.get(i).getPregunta());
+            int pos=i+1;
+            temp.setText(pos+".- "+Recurso_Resultados.OPCION_PSICO.get(i).getPregunta());
 
             TextView temp_resp=v.findViewById(Recurso_Resultados.OPCION_PSICO.get(i).getText_Resultado());
             String resu= ResultadosDiagnostico.RESULTADO_TEMP.getPSICO().get(i).toString();

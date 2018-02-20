@@ -3,6 +3,7 @@ package com.example.jesusinca.alianza.Adapter;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
@@ -19,12 +20,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.jesusinca.alianza.Activities.Captacion.CaptacionActivity;
 import com.example.jesusinca.alianza.Activities.Captacion.ListaMasivosActivity;
+import com.example.jesusinca.alianza.Activities.Captacion.ListaPersonaMasivoActivity;
 import com.example.jesusinca.alianza.Activities.Captacion.MasivoNuevoActivity;
 import com.example.jesusinca.alianza.Activities.Captacion.MasivoResultadosActivity;
 import com.example.jesusinca.alianza.Entity.Masivo;
 import com.example.jesusinca.alianza.Entity.Persona;
 import com.example.jesusinca.alianza.Entity.Usuario;
 import com.example.jesusinca.alianza.Interface_Alianza.RecyclerViewOnItemClickListener;
+import com.example.jesusinca.alianza.Peticiones.EliminarResultados;
 import com.example.jesusinca.alianza.Peticiones.RecuperarResultadosDiagnostico;
 import com.example.jesusinca.alianza.Peticiones.Recuperar_Sugerido;
 import com.example.jesusinca.alianza.R;
@@ -137,7 +140,40 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
                                     Toast.makeText(context, "Postulante no tiene Evaluaciòn Disponible", Toast.LENGTH_SHORT).show();
                                 }
                             }else if(item.getTitle().toString().equalsIgnoreCase("Eliminar")){
-                                Toast.makeText(context, "OPCION3", Toast.LENGTH_SHORT).show();
+                                int estado=my_Data.get(position).getEstado_capta();
+                                if(estado==2){
+
+                                    final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                                    builder.setTitle("RESULTADOS")
+                                            .setMessage("¿Desea Eliminar Resultados?")
+                                            .setPositiveButton("SI",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+
+                                       Persona.PERSONA_TEMP.setId(my_Data.get(position).getId());
+                                       Persona.PERSONA_TEMP.setNombre_Persona(my_Data.get(position).getNombre_Persona());
+                                       Persona.PERSONA_TEMP.setApellidos_Persona(my_Data.get(position).getApellidos_Persona());
+
+                                          int id_persona=Persona.PERSONA_TEMP.getId();
+                                          Eliminar_Resultados(id_persona,context);
+
+                                                        }
+                                                    })
+                                            .setNegativeButton("NO",
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    });
+
+                                    builder.show();
+                                }else{
+        Toast.makeText(context, "Postulante no tiene Evaluaciones para eliminar", Toast.LENGTH_SHORT).show();
+                                }
+
+
                             }
                             return true;
                         }
@@ -149,12 +185,52 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
 
     }
 
+    private void Eliminar_Resultados(final  int id_per,final Context context) {
+
+        String id_persona=String.valueOf(id_per);
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Resultados");
+        progressDialog.setMessage("Eliminado Resultados...");
+        progressDialog.show();
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        Toast.makeText(context, "Resultados Eliminados Correctamente", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(context, ListaPersonaMasivoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "No se Pudo ELiminar Resultados", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    progressDialog.dismiss();
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar Resultados :"+e);
+                }
+            }
+        };
+
+        EliminarResultados xx = new EliminarResultados(id_persona,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
     @Override
     public int getItemCount() {
         return my_Data.size();
     }
-
-
     private void Recuperar_Resultados(final int id,final Context context) {
         String id_persona=String.valueOf(id);
 
@@ -226,6 +302,28 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
                         ResultadosDiagnostico.RESULTADO_TEMP.setTotal_psico(jsonResponse.getInt("totalpsico"));
                         ResultadosDiagnostico.RESULTADO_TEMP.setNombre_Scout(jsonResponse.getString("scout").toUpperCase());
 
+                        for(int i=0;i<ResultadosDiagnostico.RESULTADO_TEMP.getFISICO().size();i++){
+                            debug("FISICO Nº "+i+" "+ResultadosDiagnostico.RESULTADO_TEMP.getFISICO().get(i));
+                        }
+
+                        for(int i=0;i<ResultadosDiagnostico.RESULTADO_TEMP.getSOCIAL().size();i++){
+                            debug("SOCIAL Nº "+i+" "+ResultadosDiagnostico.RESULTADO_TEMP.getSOCIAL().get(i));
+                        }
+
+                        for(int i=0;i<ResultadosDiagnostico.RESULTADO_TEMP.getCAPACIDAD().size();i++){
+                            debug("CAPACIDAD Nº "+i+" "+ResultadosDiagnostico.RESULTADO_TEMP.getCAPACIDAD().get(i));
+                        }
+
+                        for(int i=0;i<ResultadosDiagnostico.RESULTADO_TEMP.getTECNICO().size();i++){
+                            debug("TECNICO Nº "+i+" "+ResultadosDiagnostico.RESULTADO_TEMP.getTECNICO().get(i));
+                        }
+
+                        for(int i=0;i<ResultadosDiagnostico.RESULTADO_TEMP.getPSICO().size();i++){
+                            debug("PSICO Nº "+i+" "+ResultadosDiagnostico.RESULTADO_TEMP.getPSICO().get(i));
+                        }
+
+
+
                         Recuperar_Posiciones(ResultadosDiagnostico.RESULTADO_TEMP.getSugerido1(),ResultadosDiagnostico.RESULTADO_TEMP.getSugerido2(),ResultadosDiagnostico.RESULTADO_TEMP.getSugerid3(),context);
 
 
@@ -249,7 +347,6 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
 
 
     }
-
     private void Recuperar_Posiciones(final int sug1,final int sug2,final int sug3,final Context context) {
 
         String sugerido1=String.valueOf(sug1);
@@ -312,10 +409,9 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
         Recuperar_Sugerido xx = new Recuperar_Sugerido(sugerido1,sugerido2,sugerido3,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
-
     }
-
+    public void debug(String msn){
+        System.out.println(msn);
+    }
 
 }

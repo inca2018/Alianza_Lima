@@ -41,12 +41,39 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="8dp"/>
             </RelativeLayout>
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="JESUS INCA CARDENAS"
-                android:gravity="center"/>
+                android:orientation="vertical"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@+id/Tabs_resultados"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="JESUS INCA CARDENAS"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/Tabs_resultados2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="LIMA/LIMA/LOS OLIVOS"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="@color/blue"
+                   />
+
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
     </RelativeLayout>
         <LinearLayout

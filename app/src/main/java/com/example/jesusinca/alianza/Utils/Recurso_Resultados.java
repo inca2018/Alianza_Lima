@@ -33,19 +33,19 @@ public class Recurso_Resultados {
         OPCION_FISICO.add(new Recurso_Resultados("Resistencia",R.id.tab1_f7,0,R.id.tab1_r7));
 
         OPCION_CAPACIDAD.add(new Recurso_Resultados("Percepción e Interpretación",R.id.tab2_f1,0,R.id.tab2_r1));
-        OPCION_CAPACIDAD.add(new Recurso_Resultados("Toma de Decisiones",R.id.tab2_f1,0,R.id.tab2_r1));
-        OPCION_CAPACIDAD.add(new Recurso_Resultados("Inteligencia Táctica y Posicionamiento",R.id.tab2_f1,0,R.id.tab2_r1));
-        OPCION_CAPACIDAD.add(new Recurso_Resultados("Visión de juego",R.id.tab2_f1,0,R.id.tab2_r1));
+        OPCION_CAPACIDAD.add(new Recurso_Resultados("Toma de Decisiones",R.id.tab2_f2,0,R.id.tab2_r2));
+        OPCION_CAPACIDAD.add(new Recurso_Resultados("Inteligencia Táctica y Posicionamiento",R.id.tab2_f3,0,R.id.tab2_r3));
+        OPCION_CAPACIDAD.add(new Recurso_Resultados("Visión de juego",R.id.tab2_f4,0,R.id.tab2_r4));
 
         OPCION_SOCIAL.add(new Recurso_Resultados("Actitud ante el Adversario",R.id.tab3_f1,0,R.id.tab3_r1));
-        OPCION_SOCIAL.add(new Recurso_Resultados("Actitud con Compañeros",R.id.tab3_f1,0,R.id.tab3_r1));
-        OPCION_SOCIAL.add(new Recurso_Resultados("Actitud con el Árbitro",R.id.tab3_f1,0,R.id.tab3_r1));
-        OPCION_SOCIAL.add(new Recurso_Resultados("Actitud con el Público",R.id.tab3_f1,0,R.id.tab3_r1));
+        OPCION_SOCIAL.add(new Recurso_Resultados("Actitud con Compañeros",R.id.tab3_f2,0,R.id.tab3_r2));
+        OPCION_SOCIAL.add(new Recurso_Resultados("Actitud con el Árbitro",R.id.tab3_f3,0,R.id.tab3_r3));
+        OPCION_SOCIAL.add(new Recurso_Resultados("Actitud con el Público",R.id.tab3_f4,0,R.id.tab3_r4));
 
 
         OPCION_TECNICO.add(new Recurso_Resultados("Control de Balones",R.id.tab4_f1,0,R.id.tab4_r1));
         OPCION_TECNICO.add(new Recurso_Resultados("Pases largos y entre líneas",R.id.tab4_f2,0,R.id.tab4_r2));
-        OPCION_TECNICO.add(new Recurso_Resultados("Tiros libres",R.id.tab4_f3,0,R.id.tab1_r3));
+        OPCION_TECNICO.add(new Recurso_Resultados("Tiros libres",R.id.tab4_f3,0,R.id.tab4_r3));
         OPCION_TECNICO.add(new Recurso_Resultados("Juego y Técnica de Cabeceo",R.id.tab4_f4,0,R.id.tab4_r4));
         OPCION_TECNICO.add(new Recurso_Resultados("Dribbling (1 vs 1)",R.id.tab4_f5,0,R.id.tab4_r5));
         OPCION_TECNICO.add(new Recurso_Resultados("Técnica de centro",R.id.tab4_f6,0,R.id.tab4_r6));
@@ -53,9 +53,9 @@ public class Recurso_Resultados {
 
 
         OPCION_PSICO.add(new Recurso_Resultados("Liderazgo en el campo",R.id.tab5_f1,0,R.id.tab5_r1));
-        OPCION_PSICO.add(new Recurso_Resultados("Soporte emocional al compañero",R.id.tab5_f1,0,R.id.tab5_r1));
-        OPCION_PSICO.add(new Recurso_Resultados("Respeto a la Autoridad y las Reglas",R.id.tab5_f1,0,R.id.tab5_r1));
-        OPCION_PSICO.add(new Recurso_Resultados("Capacidad de sacrificio",R.id.tab5_f1,0,R.id.tab3_r1));
+        OPCION_PSICO.add(new Recurso_Resultados("Soporte emocional al compañero",R.id.tab5_f2,0,R.id.tab5_r2));
+        OPCION_PSICO.add(new Recurso_Resultados("Respeto a la Autoridad y las Reglas",R.id.tab5_f3,0,R.id.tab5_r3));
+        OPCION_PSICO.add(new Recurso_Resultados("Capacidad de sacrificio",R.id.tab5_f4,0,R.id.tab5_r4));
 
 
 

@@ -188,7 +188,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 style="@style/titulo2"
-                                android:text="Creación de Pruebas Masivas"/>
+                                android:text="Gestión de Diagnostico Masivo"/>
 
                             <android.support.v7.widget.CardView
                                 android:layout_width="match_parent"
@@ -201,35 +201,12 @@
                                     android:id="@+id/accion_3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Crear Nueva Relación"
+                                    android:text="Ingresar"
                                     android:background="@android:color/transparent"
                                     android:textColor="@color/colorWhite"
                                     />
                             </android.support.v7.widget.CardView>
 
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                style="@style/titulo2"
-                                android:text="Relacion de Pruebas Masivas"/>
-
-                            <android.support.v7.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardElevation="5dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@color/deep_naranja400"
-                                android:layout_margin="8dp">
-                                <Button
-                                    android:id="@+id/accion_4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ver Listas"
-                                    android:background="@android:color/transparent"
-                                    android:textColor="@color/colorWhite"
-                                    />
-                            </android.support.v7.widget.CardView>
 
                         </LinearLayout>
 

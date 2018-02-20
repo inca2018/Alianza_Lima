@@ -10,10 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.jesusinca.alianza.Activities.Ubigeo.UbigeoActivity;
 import com.example.jesusinca.alianza.Entity.Persona;
 import com.example.jesusinca.alianza.Entity.Unidad_Territorial;
 import com.example.jesusinca.alianza.Fragments_Resultados.Tab1;
@@ -25,6 +27,7 @@ import com.example.jesusinca.alianza.Fragments_Resultados.Tab6;
 import com.example.jesusinca.alianza.Peticiones.RecuperarDistritos;
 import com.example.jesusinca.alianza.Peticiones.RecuperarResultadosDiagnostico;
 import com.example.jesusinca.alianza.R;
+import com.example.jesusinca.alianza.Utils.GestionUbigeo;
 import com.example.jesusinca.alianza.Utils.ResultadosDiagnostico;
 
 import org.json.JSONArray;
@@ -34,19 +37,34 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.transform.Result;
+
 public class MasivoResultadosActivity extends AppCompatActivity{
     TabLayout tabLayout;
     ViewPager viewPager;
     Context context;
+    TextView resultado_persona;
+    TextView resultado_ubigeo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context=this;
         setContentView(R.layout.activity_masivo_resultados);
+        resultado_persona=findViewById(R.id.Tabs_resultados);
+        resultado_ubigeo=findViewById(R.id.Tabs_resultados2);
         tabLayout=(TabLayout)findViewById(R.id.TabLayout);
         viewPager=findViewById(R.id.pager);
         tabLayout.setupWithViewPager(viewPager);
         SetupViewPager(viewPager);
+
+        if(Persona.PERSONA_TEMP.getId()!=0){
+            resultado_persona.setText(Persona.PERSONA_TEMP.getNombre_Persona()+" "+Persona.PERSONA_TEMP.getApellidos_Persona());
+             int totalito=ResultadosDiagnostico.RESULTADO_TEMP.getTotal_fisico()+ResultadosDiagnostico.RESULTADO_TEMP.getTotal_capacidad()+ResultadosDiagnostico.RESULTADO_TEMP.getTotal_social()+ResultadosDiagnostico.RESULTADO_TEMP.getTotal_tecnico()+ResultadosDiagnostico.RESULTADO_TEMP.getTotal_psico();
+            resultado_ubigeo.setText(totalito+" Ptos.");
+        }else{
+            resultado_persona.setText("SIN DATOS");
+            resultado_ubigeo.setText("SIN DATOS DE TOTAL");
+        }
 
     }
 

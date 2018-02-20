@@ -34,7 +34,7 @@ import static com.example.jesusinca.alianza.Entity.Usuario.SESION_ACTUAL;
 
 public class CaptacionFragment extends Fragment {
     public Context mContext;
-    Button accion1,accion2,accion3,accion4,accion5,accion6;
+    Button accion1,accion2,accion3,accion5,accion6;
     TextView texto_ubigeo_Capta,texto_ubigeo_Capta_masivo,texto_ubigeo_barrio;
     ImageView imagen_ubigeo_Capta,imagen_ubigeo_Capta_masivo,imagen_ubigeo_barrio;
 
@@ -66,7 +66,7 @@ public class CaptacionFragment extends Fragment {
 
         accion2=(Button)v.findViewById(R.id.accion_2);
         accion3=(Button)v.findViewById(R.id.accion_3);
-        accion4=(Button)v.findViewById(R.id.accion_4);
+
         accion5=(Button)v.findViewById(R.id.accion_5);
         accion6=(Button)v.findViewById(R.id.accion_6);
 
@@ -110,18 +110,8 @@ public class CaptacionFragment extends Fragment {
                 }
             }
         });
-        accion4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
-                    Intent intent= new Intent(mContext,ListaMasivosActivity.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
 
         accion5.setOnClickListener(new View.OnClickListener() {
             @Override

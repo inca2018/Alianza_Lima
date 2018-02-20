@@ -45,7 +45,8 @@ public class Tab3 extends Fragment {
     private void setear_Texto(View v) {
         for(int i = 0; i< Recurso_Resultados.OPCION_CAPACIDAD.size(); i++){
             TextView temp=v.findViewById(Recurso_Resultados.OPCION_CAPACIDAD.get(i).getText_Pregunta());
-            temp.setText(i+".- "+Recurso_Resultados.OPCION_CAPACIDAD.get(i).getPregunta());
+            int pos=i+1;
+            temp.setText(pos+".- "+Recurso_Resultados.OPCION_CAPACIDAD.get(i).getPregunta());
 
             TextView temp_resp=v.findViewById(Recurso_Resultados.OPCION_CAPACIDAD.get(i).getText_Resultado());
             String resu= ResultadosDiagnostico.RESULTADO_TEMP.getCAPACIDAD().get(i).toString();
