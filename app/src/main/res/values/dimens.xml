@@ -28,4 +28,13 @@
 
 
 
+    <integer name="colum">24</integer>
+    <integer name="items">264</integer>
+
+
+    <dimen name="altura_card">28dp</dimen>
+    <dimen name="ancho_card">28dp</dimen>
+
+
+
 </resources>

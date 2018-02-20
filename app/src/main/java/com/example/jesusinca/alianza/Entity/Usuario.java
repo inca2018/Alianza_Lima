@@ -29,12 +29,31 @@ public class Usuario {
   int id_masivo;
   int id_persona;
 
+    int altura;
+    int ancho;
+
 
     public static final Usuario SESION_ACTUAL=new Usuario();
 
 
     public Usuario(){
 
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
     }
 
     public int getId_masivo() {

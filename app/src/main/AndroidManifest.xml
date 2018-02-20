@@ -16,27 +16,42 @@
             android:name=".Activities.Captacion.CaptacionActivity"
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Captacion.PruebaAnimacionActivity" />
-        <activity android:name=".Activities.Captacion.RegistroPostulantesActivity" />
-        <activity android:name=".Activities.Inicio.LoginActivity">
+        <activity android:name=".Activities.Captacion.RegistroPostulantesActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Inicio.LoginActivity"
+            android:configChanges="screenSize|orientation">
+
+        </activity>
+        <activity
+            android:name=".Activities.Inicio.PrincipalActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Ubigeo.UbigeoActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.ValidarDiagnosticoIndividualActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.ListaMasivosActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.MasivoNuevoActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.ListaPersonaMasivoActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.PersonaNuevoMasivoActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.MasivoResultadosActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.ListaPersonaSeguimientoActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.ListaSeguimientosActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Captacion.SeguimientoActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.Inicio.PrincipalActivity"
-            android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.Ubigeo.UbigeoActivity" />
-        <activity android:name=".Activities.Captacion.ValidarDiagnosticoIndividualActivity" />
-        <activity android:name=".Activities.Captacion.ListaMasivosActivity" />
-        <activity android:name=".Activities.Captacion.MasivoNuevoActivity" />
-        <activity android:name=".Activities.Captacion.ListaPersonaMasivoActivity" />
-        <activity android:name=".Activities.Captacion.PersonaNuevoMasivoActivity" />
-        <activity android:name=".Activities.Captacion.MasivoResultadosActivity" />
-        <activity android:name=".Activities.Captacion.ListaPersonaSeguimientoActivity" />
-        <activity android:name=".Activities.Captacion.ListaSeguimientosActivity" />
-        <activity android:name=".Activities.Captacion.SeguimientoActivity"></activity>
     </application>
 
 </manifest>
